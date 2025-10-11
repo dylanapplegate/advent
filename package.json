@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "run:js": "node run_js.js",
-    "run:py": "python run_py.py"
+    "run:py": "./.venv/bin/python run_py.py",
+    "setup:py": "python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt",
+    "postinstall": "npm run setup:py"
   },
   "keywords": [],
   "author": "",

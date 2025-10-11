@@ -95,10 +95,14 @@ Solutions are run using root-level scripts that automatically validate examples 
 
 **Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
 
-### 6. Setup Files
+### 6. Getting Started
 
-* **.gitignore:** Standard file to exclude build artifacts and local configurations.
-* **README.md:** High-level summary for human users with setup and usage instructions.
+1.  **Install Dependencies and Setup Environment:**
+    ```bash
+    npm install
+    ```
+
+This single command will install all Node.js dependencies and then automatically create a Python virtual environment (`.venv`) and install all Python dependencies into it.
 
 ### 7. New Requirement: `GEMINI.md`
 

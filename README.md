@@ -2,17 +2,14 @@
 
 This project is a multi-language solver for Advent of Code puzzles, with support for Python and JavaScript.
 
-## Setup
+## 🚀 Getting Started
 
-### Python
+1.  **Install Dependencies and Setup Environment:**
+    ```bash
+    npm install
+    ```
 
-1.  Create a virtual environment: `python -m venv .venv`
-2.  Activate it: `source .venv/bin/activate`
-3.  Install dependencies: `pip install -r requirements.txt`
-
-### JavaScript
-
-1.  Install dependencies: `npm install`
+This single command will install all Node.js dependencies and then automatically create a Python virtual environment (`.venv`) and install all Python dependencies into it.
 
 ## Scaffolding
 
