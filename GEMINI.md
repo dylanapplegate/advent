@@ -86,25 +86,25 @@ The **scaffold.py** script must be written in Python to simplify the setup proce
 * # Example: python scaffold.py 2023 1
 ```
 
-**Actions:**
+### 5. Running Solutions
 
-1. Validate inputs and create the structure: <YEAR>/day<DD>.
-2. Create the python and javascript subdirectories.
-3. Create an empty **input.txt**.
-4. Create **example_1.txt** with the basic template (input lines above ---, expected answers below).
-5. Create **test_data.json** with an empty { "part1": [], "part2": [] } structure.
-6. Populate all four template files (solution.py, test_solution.py, solution.js, solution.test.js) with appropriate boilerplates, including imports, and the defined function signatures (part1, part2).
+Solutions are run using root-level scripts that automatically validate examples first.
 
-### 5. Setup Files
+- **Python Execution:** `npm run run:py -- <YEAR> <DAY>`
+- **JavaScript Execution:** `npm run run:js -- <YEAR> <DAY>`
+
+**Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
+
+### 6. Setup Files
 
 * **.gitignore:** Standard file to exclude build artifacts and local configurations.
 * **README.md:** High-level summary for human users with setup and usage instructions.
 
-### 6. New Requirement: `GEMINI.md`
+### 7. New Requirement: `GEMINI.md`
 
 The root of the project directory (`/aoc-solver/`) must contain a file named **`GEMINI.md`**.
 
-### 7. `GEMINI.md` Content
+### 8. `GEMINI.md` Content
 
 This file must clearly document the key aspects of the project. The coding agent should be instructed to copy and paste this file into the prompt when requesting work on a new day or feature.
 

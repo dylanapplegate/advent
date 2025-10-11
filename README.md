@@ -21,3 +21,12 @@ To create the directory structure for a new puzzle, use the `scaffold.py` script
 ```bash
 python scaffold.py <YEAR> <DAY>
 ```
+
+## Running Solutions
+
+Solutions are run using root-level scripts that automatically validate examples first.
+
+- **Python Execution:** `npm run run:py -- <YEAR> <DAY>`
+- **JavaScript Execution:** `npm run run:js -- <YEAR> <DAY>`
+
+**Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
