@@ -1,7 +1,7 @@
-
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const chokidar = require('chokidar');
 
 const [,, year, day] = process.argv;
 
@@ -18,24 +18,37 @@ if (!fs.existsSync(solutionPath)) {
     process.exit(1);
 }
 
-const jest = spawn('jest', [solutionPath], { stdio: 'inherit' });
+function runTestsAndSolution() {
+    const jest = spawn('jest', [solutionPath], { stdio: 'inherit' });
 
-jest.on('close', (code) => {
-    if (code !== 0) {
-        console.error('Tests Failed. Skipping final solution run.');
-        process.exit(1);
-    }
+    jest.on('close', (code) => {
+        if (code !== 0) {
+            console.error('Tests Failed. Skipping final solution run.');
+            return;
+        }
 
-    console.log('All tests passed!');
+        console.log('All tests passed!');
 
-    const inputFilePath = path.join(year, dayPadded, 'input.txt');
-    const inputData = fs.readFileSync(inputFilePath, 'utf-8');
+        const inputFilePath = path.join(year, dayPadded, 'input.txt');
+        const inputData = fs.readFileSync(inputFilePath, 'utf-8');
 
-    const { part1, part2 } = require(path.resolve(solutionPath, 'solution.js'));
+        // Invalidate require cache to get the latest version of the solution
+        delete require.cache[require.resolve(path.resolve(solutionPath, 'solution.js'))];
+        const { part1, part2 } = require(path.resolve(solutionPath, 'solution.js'));
 
-    const part1Result = part1(inputData);
-    const part2Result = part2(inputData);
+        const part1Result = part1(inputData);
+        const part2Result = part2(inputData);
 
-    console.log(`Part 1: ${part1Result}`);
-    console.log(`Part 2: ${part2Result}`);
+        console.log(`Part 1: ${part1Result}`);
+        console.log(`Part 2: ${part2Result}`);
+    });
+}
+
+runTestsAndSolution();
+
+const watcher = chokidar.watch(path.join(solutionPath, 'solution.js'));
+
+watcher.on('change', () => {
+    console.log('Solution file changed. Re-running tests...');
+    runTestsAndSolution();
 });
