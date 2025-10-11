@@ -1,0 +1,23 @@
+# Advent of Code Solver
+
+This project is a multi-language solver for Advent of Code puzzles, with support for Python and JavaScript.
+
+## Setup
+
+### Python
+
+1.  Create a virtual environment: `python -m venv .venv`
+2.  Activate it: `source .venv/bin/activate`
+3.  Install dependencies: `pip install -r requirements.txt`
+
+### JavaScript
+
+1.  Install dependencies: `npm install`
+
+## Scaffolding
+
+To create the directory structure for a new puzzle, use the `scaffold.py` script:
+
+```bash
+python scaffold.py <YEAR> <DAY>
+```

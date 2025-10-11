@@ -1,0 +1,12 @@
+# Python
+.venv/
+env/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+
+# OS-specific
+.DS_Store
