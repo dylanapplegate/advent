@@ -37,5 +37,14 @@
       "expected": "-3"
     }
   ],
-  "part2": []
+  "part2": [
+    {
+      "input": ")",
+      "expected": "1"
+    },
+    {
+      "input": "()())",
+      "expected": "5"
+    }
+  ]
 }
