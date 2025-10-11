@@ -7,7 +7,7 @@ This specification defines the required file structure, technology stack, and wo
 | Feature | Python Stack | JavaScript Stack | Scaffolding |
 | :---- | :---- | :---- | :---- |
 | **Language** | Python 3.10+ | Node.js (LTS) | Python |
-| **Package Manager** | pip (via requirements.txt) | npm (via package.json) | N/A |
+| **Package Manager** | pip (via requirements.txt) | pnpm (via package.json) | N/A |
 | **Test Runner** | **pytest** | **jest** | N/A |
 | **Code Quality** | **flake8**, **black**, **mypy** | **eslint**, **prettier** | N/A |
 | **Solution Interface** | part1(input), part2(input) | part1(input), part2(input) | N/A |
@@ -90,8 +90,8 @@ The **scaffold.py** script must be written in Python to simplify the setup proce
 
 Solutions are run using root-level scripts that automatically validate examples first.
 
-- **Python Execution:** `npm run run:py -- <YEAR> <DAY>`
-- **JavaScript Execution:** `npm run run:js -- <YEAR> <DAY>`
+- **Python Execution:** `pnpm run run:py -- <YEAR> <DAY>`
+- **JavaScript Execution:** `pnpm run run:js -- <YEAR> <DAY>`
 
 **Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
 
@@ -99,7 +99,7 @@ Solutions are run using root-level scripts that automatically validate examples 
 
 1.  **Install Dependencies and Setup Environment:**
     ```bash
-    npm install
+    pnpm install
     ```
 
 This single command will install all Node.js dependencies and then automatically create a Python virtual environment (`.venv`) and install all Python dependencies into it.

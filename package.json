@@ -8,7 +8,7 @@
     "run:js": "node run_js.js",
     "run:py": "./.venv/bin/python run_py.py",
     "setup:py": "python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt",
-    "postinstall": "npm run setup:py"
+    "postinstall": "pnpm run setup:py"
   },
   "keywords": [],
   "author": "",
