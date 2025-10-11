@@ -1,6 +1,6 @@
 import json
 import os
-from . import solution
+import solution
 
 def read_file(filename):
     with open(os.path.join(os.path.dirname(__file__), "..", filename)) as f:
@@ -20,8 +20,7 @@ def test_part1_example():
     example_data = read_file("example_1.txt")
     if "---" in example_data:
         input_data, expected = example_data.split("---")
-        expected_part1 = [line for line in expected.split("
-") if "Part 1" in line][0].split(":")[1].strip()
+        expected_part1 = [line for line in expected.split("\n") if "Part 1" in line][0].split(":")[1].strip()
         if expected_part1:
             assert str(solution.part1(input_data.strip())) == expected_part1
 
@@ -29,7 +28,6 @@ def test_part2_example():
     example_data = read_file("example_1.txt")
     if "---" in example_data:
         input_data, expected = example_data.split("---")
-        expected_part2 = [line for line in expected.split("
-") if "Part 2" in line][0].split(":")[1].strip()
+        expected_part2 = [line for line in expected.split("\n") if "Part 2" in line][0].split(":")[1].strip()
         if expected_part2:
             assert str(solution.part2(input_data.strip())) == expected_part2

@@ -15,7 +15,9 @@ def run_tests_and_solution(year, day):
         return
 
     # Run tests
-    test_result = subprocess.run(["pytest", solution_path], capture_output=True, text=True)
+    env = os.environ.copy()
+    env["PYTHONPATH"] = solution_path + os.pathsep + env.get("PYTHONPATH", "")
+    test_result = subprocess.run(["pytest", "--import-mode=importlib", solution_path], capture_output=True, text=True, env=env)
 
     print(test_result.stdout)
     print(test_result.stderr)

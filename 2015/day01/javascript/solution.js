@@ -1,5 +1,9 @@
 function part1(input) {
-  return undefined;
+  return input
+    .split("")
+    .map((v) => (v === "(" ? 1 : -1))
+    .reduce((a, b) => a + b, 0)
+    .toString();
 }
 
 function part2(input) {
