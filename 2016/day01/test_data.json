@@ -1,5 +1,22 @@
-
 {
-  "part1": [],
-  "part2": []
+  "part1": [
+    {
+      "input": "R2, L3",
+      "expected": 5
+    },
+    {
+      "input": "R2, R2, R2",
+      "expected": 2
+    },
+    {
+      "input": "R5, L5, R5, R3",
+      "expected": 12
+    }
+  ],
+  "part2": [
+    {
+      "input": "R8, R4, R4, R8",
+      "expected": 4
+    }
+  ]
 }
