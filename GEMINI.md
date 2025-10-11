@@ -82,16 +82,16 @@ The **scaffold.py** script must be written in Python to simplify the setup proce
 **Usage:**
 
 ```bash
-* python scaffold.py <YEAR> <DAY>
-* # Example: python scaffold.py 2023 1
+* pnpm scaffold <YEAR> <DAY>
+* # Example: pnpm scaffold 2023 1
 ```
 
 ### 5. Running Solutions
 
 Solutions are run using root-level scripts that automatically validate examples first.
 
-- **Python Execution:** `pnpm run run:py -- <YEAR> <DAY>`
-- **JavaScript Execution:** `pnpm run run:js -- <YEAR> <DAY>`
+- **Python Execution:** `pnpm run:py <YEAR> <DAY>`
+- **JavaScript Execution:** `pnpm run:js <YEAR> <DAY>`
 
 **Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
 
