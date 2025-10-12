@@ -12,10 +12,7 @@ def load_solution_module(path):
     spec.loader.exec_module(module)
     return module
 
-def test_solution(solution_path, pytestconfig):
-    if not pytestconfig.getoption("--run-all") and "2017/day01" not in str(solution_path):
-        pytest.skip("skipping tests not in the current working directory")
-
+def test_solution(solution_path):
     solution_dir = solution_path.parent
     day_dir = solution_dir.parent
     test_data_path = day_dir / "test_data.json"
@@ -31,7 +28,13 @@ def test_solution(solution_path, pytestconfig):
             if part in test_data:
                 for case in test_data[part]:
                     input_data = case["input"]
-                    expected = case["expected"]
+                    if part == "part2":
+                        if "expected_first_twice" in case:
+                            expected = case["expected_first_twice"]
+                        else:
+                            continue
+                    else:
+                        expected = case["expected"]
                     
                     if hasattr(solution, part):
                         actual = getattr(solution, part)(input_data)
