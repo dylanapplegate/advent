@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "pnpm run test:py && pnpm run test:js",
+    "test:js": "jest test_solutions.test.js",
+    "test:py": "pytest",
     "run:js": "node run_js.js",
     "run:py": "./.venv/bin/python run_py.py",
     "setup:py": "python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt",

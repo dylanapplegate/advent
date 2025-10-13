@@ -11,10 +11,9 @@ function _prepareMoves(input_data) {
 
 function part1(input_data) {
   const moves = _prepareMoves(input_data);
-
   const total = moves.reduce((sum, move) => sum + move, 0);
 
-  return total.toString();
+  return total;
 }
 
 function part2(input_data) {
@@ -29,7 +28,7 @@ function part2(input_data) {
       total += move;
 
       if (seen.has(total)) {
-        return total.toString();
+        return total;
       }
 
       seen.add(total);
