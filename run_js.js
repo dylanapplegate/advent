@@ -20,7 +20,7 @@ if (!fs.existsSync(solutionPath)) {
 
 function runTestsAndSolution() {
     const testPattern = `${year}/${dayPadded}`;
-    const jest = spawn('jest', ['--testPathPattern', testPattern, 'test_solutions.test.js'], { stdio: 'inherit' });
+    const jest = spawn('jest', ['--testNamePattern', testPattern], { stdio: 'inherit' });
 
     jest.on('close', (code) => {
         if (code !== 0) {
