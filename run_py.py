@@ -3,8 +3,20 @@ import sys
 import subprocess
 import importlib.util
 import time
+import platform
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
+def clear_console():
+    # Detect the operating system
+    system = platform.system()
+
+    if system == "Windows":
+        # Use 'cls' for Windows command prompt/PowerShell
+        os.system('cls')
+    else:
+        # Use 'clear' for Linux, macOS, and other Unix-like systems
+        os.system('clear')
 
 def run_tests_and_solution(year, day):
     day_padded = f"day{day.zfill(2)}"
@@ -25,7 +37,7 @@ def run_tests_and_solution(year, day):
     if test_result.returncode != 0:
         print("Tests Failed. Skipping final solution run.")
         return
-    
+
     print("All tests passed!")
 
     # Run solution
@@ -34,7 +46,7 @@ def run_tests_and_solution(year, day):
         input_data = f.read()
 
     spec = importlib.util.spec_from_file_location(
-        f"{year}.{day_padded}.python.solution", 
+        f"{year}.{day_padded}.python.solution",
         os.path.join(solution_path, "solution.py")
     )
     solution_module = importlib.util.module_from_spec(spec)
@@ -53,6 +65,7 @@ class ChangeHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if event.src_path.endswith("solution.py"):
+            clear_console()
             print("Solution file changed. Re-running tests...")
             run_tests_and_solution(self.year, self.day)
 
@@ -63,7 +76,7 @@ def main():
 
     year = sys.argv[1]
     day = sys.argv[2]
-    
+
     run_tests_and_solution(year, day)
 
     day_padded = f"day{day.zfill(2)}"

@@ -30,7 +30,7 @@ function part2(input) {
       } else if (subTotal < rem) {
         l++;
       } else {
-        r++;
+        r--;
       }
     }
   }
