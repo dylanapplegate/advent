@@ -30,10 +30,15 @@ def main():
 
     # Create example_1.txt
     with open(os.path.join(base_dir, "example_1.txt"), "w") as f:
-        f.write("""
----
-Part 1:
-Part 2:
+        f.write("""--- Part 1 ---
+Input:
+
+Output:
+
+--- Part 2 ---
+Input:
+
+Output:
 """)
 
     # Create test_data.json

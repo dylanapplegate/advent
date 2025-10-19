@@ -56,24 +56,24 @@ solutionPaths.forEach(solutionPath => {
 
         const exampleDataPath = path.join(dayDir, 'example_1.txt');
         if (fs.existsSync(exampleDataPath)) {
-            const exampleData = fs.readFileSync(exampleDataPath, 'utf-8');
-            if (exampleData.includes('---')) {
-                const [input, expected] = exampleData.split('---');
-                const expectedPart1Match = expected.match(/Part 1: (.*)/);
-                const expectedPart1 = expectedPart1Match ? expectedPart1Match[1].trim() : null;
+            const content = fs.readFileSync(exampleDataPath, 'utf-8').trim();
+            const part1Match = content.match(/--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)/s);
+            const part2Match = content.match(/--- Part 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$/s);
 
-                const expectedPart2Match = expected.match(/Part 2: (.*)/);
-                const expectedPart2 = expectedPart2Match ? expectedPart2Match[1].trim() : null;
-
-                if (part1 && expectedPart1) {
+            if (part1Match) {
+                const [, input, expected] = part1Match.map(s => s.trim());
+                if (part1) {
                     test('Part 1 Example', () => {
-                        expect(String(part1(input.trim()))).toBe(expectedPart1);
+                        expect(String(part1(input))).toBe(expected);
                     });
                 }
+            }
 
-                if (part2 && expectedPart2) {
+            if (part2Match) {
+                const [, input, expected] = part2Match.map(s => s.trim());
+                if (part2) {
                     test('Part 2 Example', () => {
-                        expect(String(part2(input.trim()))).toBe(expectedPart2);
+                        expect(String(part2(input))).toBe(expected);
                     });
                 }
             }

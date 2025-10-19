@@ -1,4 +1,9 @@
+--- Part 1 ---
+Input:
 
----
-Part 1: 
-Part 2: 
+Output:
+
+--- Part 2 ---
+Input:
+
+Output:

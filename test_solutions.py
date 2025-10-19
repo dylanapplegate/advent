@@ -3,6 +3,7 @@ import sys
 import os
 import json
 import pytest
+import re
 from pathlib import Path
 import importlib.util
 
@@ -36,21 +37,22 @@ def test_solution(solution_path):
 
     if example_data_path.exists():
         with open(example_data_path) as f:
-            example_data = f.read()
+            content = f.read().strip()
+        
+        part1_match = re.search(r'--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)', content, re.DOTALL)
+        part2_match = re.search(r'--- Part 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$', content, re.DOTALL)
 
-        if "---" in example_data:
-            input_data, expected_data = example_data.split("---", 1)
-            input_data = input_data.strip()
+        if part1_match:
+            input_data = part1_match.group(1).strip()
+            expected_output = part1_match.group(2).strip()
+            if hasattr(solution, 'part1'):
+                actual = solution.part1(input_data)
+                assert str(actual) == expected_output, f"Part 1 failed on example input: {input_data}"
 
-            for line in expected_data.strip().split("\n"):
-                if "Part 1" in line and hasattr(solution, "part1"):
-                    expected_part1 = line.split(":")[1].strip()
-                    if expected_part1:
-                        actual = solution.part1(input_data)
-                        assert actual == expected_part1, f"Part 1 failed on example input: {input_data}"
+        if part2_match:
+            input_data = part2_match.group(1).strip()
+            expected_output = part2_match.group(2).strip()
+            if hasattr(solution, 'part2'):
+                actual = solution.part2(input_data)
+                assert str(actual) == expected_output, f"Part 2 failed on example input: {input_data}"
 
-                if "Part 2" in line and hasattr(solution, "part2"):
-                    expected_part2 = line.split(":")[1].strip()
-                    if expected_part2:
-                        actual = solution.part2(input_data)
-                        assert actual == expected_part2, f"Part 2 failed on example input: {input_data}"
