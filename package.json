@@ -23,6 +23,7 @@
     "prettier": "^3.6.2"
   },
   "dependencies": {
-    "chokidar": "^4.0.3"
+    "chokidar": "^4.0.3",
+    "number-to-words": "^1.2.4"
   }
 }

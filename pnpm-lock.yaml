@@ -11,6 +11,9 @@ importers:
       chokidar:
         specifier: ^4.0.3
         version: 4.0.3
+      number-to-words:
+        specifier: ^1.2.4
+        version: 1.2.4
     devDependencies:
       eslint:
         specifier: ^9.37.0
@@ -1064,6 +1067,9 @@ packages:
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
+
+  number-to-words@1.2.4:
+    resolution: {integrity: sha512-/fYevVkXRcyBiZDg6yzZbm0RuaD6i0qRfn8yr+6D0KgBMOndFPxuW10qCHpzs50nN8qKuv78k8MuotZhcVX6Pw==}
 
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
@@ -2706,6 +2712,8 @@ snapshots:
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
+
+  number-to-words@1.2.4: {}
 
   once@1.4.0:
     dependencies:
