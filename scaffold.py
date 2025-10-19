@@ -12,12 +12,17 @@ def main():
     day_padded = f"day{day.zfill(2)}"
 
     base_dir = os.path.join(year, day_padded)
+
+    if os.path.exists(base_dir):
+        print(f"Error: Directory '{base_dir}' already exists. Please delete it if you wish to rescaffold.")
+        sys.exit(1)
+
     py_dir = os.path.join(base_dir, "python")
     js_dir = os.path.join(base_dir, "javascript")
 
     # Create directories
-    os.makedirs(py_dir, exist_ok=True)
-    os.makedirs(js_dir, exist_ok=True)
+    os.makedirs(py_dir)
+    os.makedirs(js_dir)
 
     # Create empty input.txt
     with open(os.path.join(base_dir, "input.txt"), "w") as f:
