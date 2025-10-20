@@ -24,5 +24,4 @@ def part2(input_data):
     left = [values[0] for values in rows]
     right = Counter([values[1] for values in rows])
     values = [num * right[num] for num in left]
-    print(values)
     return sum(values)
