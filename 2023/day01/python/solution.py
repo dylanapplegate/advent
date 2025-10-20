@@ -1,3 +1,28 @@
+from typing import Dict
+
+
+WORD_TO_NUMBER_MAP: Dict[str, str] = {
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5",
+    "6": "6",
+    "7": "7",
+    "8": "8",
+    "9": "9",
+}
+
+
 def format_data(input_data):
     return [row.strip() for row in input_data.strip().split("\n")]
 
@@ -12,5 +37,38 @@ def part1(input_data):
     return str(sum(numbers))
 
 
+def map_string(input_data):
+    first_index, first_match, last_index, last_match = (
+        float("inf"),
+        None,
+        float("-inf"),
+        None,
+    )
+
+    for term in WORD_TO_NUMBER_MAP:
+        first_term_index = input_data.find(term)
+        if first_term_index != -1 and first_term_index < first_index:
+            first_index = first_term_index
+            first_match = term
+
+        last_term_index = input_data.rfind(term)
+        if last_term_index != -1 and last_term_index > last_index:
+            last_index = last_term_index
+            last_match = term
+
+    if first_match is not None:
+        first_match_mapped = WORD_TO_NUMBER_MAP[first_match]
+    else:
+        first_match_mapped = "0"
+
+    if last_match is not None:
+        last_match_mapped = WORD_TO_NUMBER_MAP[last_match]
+    else:
+        last_match_mapped = "0"
+
+    return int(first_match_mapped + last_match_mapped)
+
+
 def part2(input_data):
-    pass
+    mapped_coordinates = [map_string(row) for row in input_data.strip().split("\n")]
+    return sum(mapped_coordinates)
