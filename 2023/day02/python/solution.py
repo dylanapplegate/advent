@@ -34,5 +34,12 @@ def part1(input_data):
     return valid_games
 
 
+def power_of_cubes(cube_count):
+    return cube_count["red"] * cube_count["blue"] * cube_count["green"]
+
+
 def part2(input_data):
-    pass
+    games = format_data(input_data)
+    power_of_games = [power_of_cubes(game) for game_id, game in games]
+
+    return sum(power_of_games)
