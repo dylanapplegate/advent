@@ -28,13 +28,16 @@ function isSafeWithException(report) {
 
 function part1(input) {
   const reports = formatInputData(input);
-  console.log({ reports });
   const safeReportCount = reports.filter((report) => isSafe(report)).length;
   return safeReportCount;
 }
 
 function part2(input) {
-  return undefined;
+  const reports = formatInputData(input);
+  const safeReportCount = reports.filter((report) =>
+    isSafeWithException(report),
+  ).length;
+  return safeReportCount;
 }
 
 module.exports = { part1, part2 };
