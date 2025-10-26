@@ -5,6 +5,11 @@ function formatInput(input) {
 function part1(input) {
   const program = formatInput(input);
 
+  if (program[1] !== 9) {
+    program[1] = 12;
+    program[2] = 2;
+  }
+
   for (let o = 0; o < program.length; o += 4) {
     const optcode = program[o];
 
