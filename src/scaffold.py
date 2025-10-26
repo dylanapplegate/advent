@@ -11,7 +11,7 @@ def main() -> None:
     day = sys.argv[2]
     day_padded = f"day{day.zfill(2)}"
 
-    base_dir = os.path.join(year, day_padded)
+    base_dir = os.path.join("src", year, day_padded)
 
     if os.path.exists(base_dir):
         print(
