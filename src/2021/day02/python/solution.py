@@ -8,7 +8,7 @@ def format_data(input: str) -> list[tuple[str, int]]:
     return lines
 
 
-def part1(input_data):
+def part1(input_data: str) -> int:
     depth, position = 0, 0
     commands = format_data(input_data)
     for direction, units in commands:
@@ -21,7 +21,7 @@ def part1(input_data):
     return depth * position
 
 
-def part2(input_data):
+def part2(input_data: str) -> int:
     aim, depth, position = 0, 0, 0
     commands = format_data(input_data)
     for direction, units in commands:

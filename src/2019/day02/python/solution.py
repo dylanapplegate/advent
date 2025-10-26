@@ -1,9 +1,12 @@
-def format_input(input: str) -> list[int]:
-    return [int(num) for num in input.strip().split(",") if num]
+from typing import List, Optional
 
 
-def part1(input: str, bypass_sub: bool = False) -> int:
-    program = format_input(input)
+def format_input(input_str: str) -> List[int]:
+    return [int(num) for num in input_str.strip().split(",") if num]
+
+
+def part1(input_str: str, bypass_sub: bool = False) -> int:
+    program = format_input(input_str)
 
     if program[1] != 9 and not bypass_sub:  # do not change the example provided
         program[1] = 12
@@ -26,14 +29,15 @@ def part1(input: str, bypass_sub: bool = False) -> int:
     return program[0]
 
 
-def part2(input):
+def part2(input_str: str) -> Optional[int]:
     desired_outcome = 19690720
 
     for x in range(0, 100):
         for y in range(0, 100):
-            program = format_input(input)
+            program = format_input(input_str)
             program[1] = x
             program[2] = y
 
             if desired_outcome == part1(",".join(map(str, program)), True):
                 return 100 * x + y
+    return None

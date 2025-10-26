@@ -1,16 +1,20 @@
 import importlib.util
 import json
 import re
+from pathlib import Path
+from types import ModuleType
 
 
-def load_solution_module(path):
+def load_solution_module(path: Path) -> ModuleType:
     spec = importlib.util.spec_from_file_location("solution", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot find module at {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
-def test_solution(solution_path):
+def test_solution(solution_path: Path) -> None:
     solution_dir = solution_path.parent
     day_dir = solution_dir.parent
     test_data_path = day_dir / "test_data.json"

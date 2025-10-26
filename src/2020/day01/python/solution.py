@@ -1,4 +1,4 @@
-from typing import Union, List
+from typing import Union, List, Optional, Set
 
 TOTAL = 2020
 
@@ -12,9 +12,9 @@ def _formatInput(input_data: Union[str, List[str]]) -> List[int]:
     return [int(v) for v in input_data]
 
 
-def part1(input_data):
+def part1(input_data: Union[str, List[str]]) -> Optional[str]:
     expenses = _formatInput(input_data)
-    seen = set()
+    seen: Set[int] = set()
 
     for expense in expenses:
         complement = TOTAL - expense
@@ -27,7 +27,7 @@ def part1(input_data):
     return None
 
 
-def part2(input_data):
+def part2(input_data: Union[str, List[str]]) -> Optional[str]:
     expenses = sorted(_formatInput(input_data))
     N = len(expenses)
 
@@ -42,6 +42,6 @@ def part2(input_data):
                 return str(expenses[i] * expenses[left] * expenses[r])
             elif sub_total < complement:
                 left += 1
-        else:
-            r -= 1
+            else:
+                r -= 1
     return None

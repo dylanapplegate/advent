@@ -1,4 +1,4 @@
-def part1(input_data):
+def part1(input_data: str) -> str:
     N = len(input_data)
     total_sum = sum(
         int(input_data[i])
@@ -8,7 +8,7 @@ def part1(input_data):
     return str(total_sum)
 
 
-def part2(input_data):
+def part2(input_data: str) -> str:
     N = len(input_data)
     offset = N // 2
     total_sum = sum(

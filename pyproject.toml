@@ -8,4 +8,5 @@ exclude = '''
 '''
 
 [tool.mypy]
-exclude = ['\.venv', 'node_modules']
+package_dir = "src"
+strict = true

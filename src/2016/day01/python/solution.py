@@ -1,5 +1,8 @@
-def part1(input_data):
-    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+from typing import List, Tuple, Set, Optional
+
+
+def part1(input_data: str) -> int:
+    directions: List[Tuple[int, int]] = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
     x, y = 0, 0
     direction = 0
@@ -21,15 +24,15 @@ def part1(input_data):
     return abs(x) + abs(y)
 
 
-def part2(input_data):
-    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+def part2(input_data: str) -> Optional[int]:
+    directions: List[Tuple[int, int]] = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
     x, y = 0, 0
     direction = 0
 
     moves = input_data.split(", ")
 
-    seen = {(x, y)}
+    seen: Set[Tuple[int, int]] = {(x, y)}
 
     for move in moves:
         if move[0] == "R":

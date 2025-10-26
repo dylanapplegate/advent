@@ -16,7 +16,7 @@
     "scaffold": "python src/scaffold.py",
     "lint": "pnpm run lint:ts && pnpm run lint:py",
     "lint:ts": "eslint src --ext .ts",
-    "lint:py": "./.venv/bin/flake8 src && ./.venv/bin/black src --check && ./.venv/bin/mypy src"
+    "lint:py": "./.venv/bin/flake8 src && ./.venv/bin/black src --check && ./.venv/bin/mypy --package src"
   },
   "keywords": [],
   "author": "",

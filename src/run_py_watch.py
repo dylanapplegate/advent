@@ -4,11 +4,13 @@ import subprocess
 import importlib.util
 import time
 import platform
+from typing import Any, Optional
+
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 
-def clear_console():
+def clear_console() -> None:
     # Detect the operating system
     system = platform.system()
 
@@ -20,7 +22,7 @@ def clear_console():
         os.system("clear")
 
 
-def run_tests_and_solution(year, day):
+def run_tests_and_solution(year: str, day: str) -> None:
     day_padded = f"day{day.zfill(2)}"
     solution_path = os.path.join("src", year, day_padded, "python")
 
@@ -61,29 +63,37 @@ def run_tests_and_solution(year, day):
         f"{year}.{day_padded}.python.solution",
         os.path.join(solution_path, "solution.py"),
     )
+    if spec is None or spec.loader is None:
+        print(f"Error: Could not load solution module for {year}/{day_padded}")
+        return
     solution_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(solution_module)
 
-    part1_result = solution_module.part1(input_data)
-    part2_result = solution_module.part2(input_data)
+    part1_result: Optional[str] = None
+    part2_result: Optional[str] = None
+
+    if hasattr(solution_module, "part1"):
+        part1_result = solution_module.part1(input_data)
+    if hasattr(solution_module, "part2"):
+        part2_result = solution_module.part2(input_data)
 
     print(f"Part 1: {part1_result}")
     print(f"Part 2: {part2_result}")
 
 
 class ChangeHandler(FileSystemEventHandler):
-    def __init__(self, year, day):
+    def __init__(self, year: str, day: str) -> None:
         self.year = year
         self.day = day
 
-    def on_modified(self, event):
+    def on_modified(self, event: Any) -> None:
         if event.src_path.endswith("solution.py"):
             clear_console()
             print("Solution file changed. Re-running tests...")
             run_tests_and_solution(self.year, self.day)
 
 
-def main():
+def main() -> None:
     if len(sys.argv) != 3:
         print("Usage: python run_py.py <YEAR> <DAY>")
         sys.exit(1)

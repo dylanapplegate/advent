@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List, Optional
 
 
 WORD_TO_NUMBER_MAP: Dict[str, str] = {
@@ -23,37 +23,35 @@ WORD_TO_NUMBER_MAP: Dict[str, str] = {
 }
 
 
-def format_data(input_data):
+def format_data(input_data: str) -> List[str]:
     return [row.strip() for row in input_data.strip().split("\n")]
 
 
-def get_input_number(input):
-    stripped_input = "".join([num for num in input.strip() if num.isdigit()])
+def get_input_number(input_str: str) -> int:
+    stripped_input = "".join([num for num in input_str.strip() if num.isdigit()])
     return int(stripped_input[0] + stripped_input[-1])
 
 
-def part1(input_data):
+def part1(input_data: str) -> str:
     numbers = [get_input_number(num) for num in format_data(input_data)]
     return str(sum(numbers))
 
 
-def map_string(input_data):
-    first_index, first_match, last_index, last_match = (
-        float("inf"),
-        None,
-        float("-inf"),
-        None,
-    )
+def map_string(input_data: str) -> int:
+    first_index: float = float("inf")
+    first_match: Optional[str] = None
+    last_index: float = float("-inf")
+    last_match: Optional[str] = None
 
     for term in WORD_TO_NUMBER_MAP:
         first_term_index = input_data.find(term)
         if first_term_index != -1 and first_term_index < first_index:
-            first_index = first_term_index
+            first_index = float(first_term_index)
             first_match = term
 
         last_term_index = input_data.rfind(term)
         if last_term_index != -1 and last_term_index > last_index:
-            last_index = last_term_index
+            last_index = float(last_term_index)
             last_match = term
 
     if first_match is not None:
@@ -69,6 +67,6 @@ def map_string(input_data):
     return int(first_match_mapped + last_match_mapped)
 
 
-def part2(input_data):
+def part2(input_data: str) -> int:
     mapped_coordinates = [map_string(row) for row in input_data.strip().split("\n")]
     return sum(mapped_coordinates)

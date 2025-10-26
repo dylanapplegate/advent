@@ -1,4 +1,6 @@
-shapes = {
+from typing import List, Tuple, Dict
+
+shapes: Dict[str, str] = {
     "A": "Rock",
     "B": "Paper",
     "C": "Scissors",
@@ -6,12 +8,12 @@ shapes = {
     "Y": "Paper",
     "Z": "Scissors",
 }
-beats = {"Rock": "Scissors", "Scissors": "Paper", "Paper": "Rock"}
-loses = {"Rock": "Paper", "Scissors": "Rock", "Paper": "Scissors"}
-scores = {"Rock": 1, "Paper": 2, "Scissors": 3}
+beats: Dict[str, str] = {"Rock": "Scissors", "Scissors": "Paper", "Paper": "Rock"}
+loses: Dict[str, str] = {"Rock": "Paper", "Scissors": "Rock", "Paper": "Scissors"}
+scores: Dict[str, int] = {"Rock": 1, "Paper": 2, "Scissors": 3}
 
 
-def format_data(input: str) -> list[tuple[str, str]]:
+def format_data(input: str) -> List[Tuple[str, str]]:
     return [
         (parts[0], parts[1])
         for line in input.strip().splitlines()
@@ -20,7 +22,7 @@ def format_data(input: str) -> list[tuple[str, str]]:
     ]
 
 
-def score_round(round: tuple[str, str]) -> int:
+def score_round(round: Tuple[str, str]) -> int:
     opponent, me = round
     score = scores[shapes[me]]
     if beats[shapes[me]] == shapes[opponent]:
@@ -31,7 +33,7 @@ def score_round(round: tuple[str, str]) -> int:
     return score
 
 
-def score_round2(round: tuple[str, str]) -> int:
+def score_round2(round: Tuple[str, str]) -> int:
     shape, result = round
     mapped_shape = shapes[shape]
     score = 0
@@ -48,12 +50,12 @@ def score_round2(round: tuple[str, str]) -> int:
 def part1(input_data: str) -> int:
     scored_rounds = [
         score_round(round_tuple) for round_tuple in format_data(input_data)
-    ]  # type: ignore
+    ]
     return sum(scored_rounds)
 
 
-def part2(input_data):
+def part2(input_data: str) -> int:
     scored_rounds = [
         score_round2(round_tuple) for round_tuple in format_data(input_data)
-    ]  # type: ignore
+    ]
     return sum(scored_rounds)
