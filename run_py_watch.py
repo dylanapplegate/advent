@@ -79,5 +79,19 @@ def main():
 
     run_tests_and_solution(year, day)
 
+    day_padded = f"day{day.zfill(2)}"
+    solution_path = os.path.join(year, day_padded, "python")
+    event_handler = ChangeHandler(year, day)
+    observer = Observer()
+    observer.schedule(event_handler, solution_path, recursive=True)
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
+
 if __name__ == "__main__":
     main()

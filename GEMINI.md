@@ -92,8 +92,18 @@ Solutions are run using root-level scripts that automatically validate examples 
 
 - **Python Execution:** `pnpm run:py <YEAR> <DAY>`
 - **JavaScript Execution:** `pnpm run:js <YEAR> <DAY>`
+- **Python Execution (with watch):** `pnpm run:py:watch <YEAR> <DAY>`
+- **JavaScript Execution (with watch):** `pnpm run:js:watch <YEAR> <DAY>`
 
 **Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
+
+### 6. Validating Agent Work
+
+After an agent has completed its work, the following steps should be taken to validate the changes:
+
+1.  **Run Tests:** Run `pnpm test` to ensure that all tests pass.
+2.  **Run Solutions:** Run `pnpm run:js 2015 1` and `pnpm run:py 2015 1` to ensure that the solutions for a known-good day execute without errors.
+3.  **Update GEMINI.md:** The agent should update this file with any relevant details about the work that was completed.
 
 ### 6. Getting Started
 

@@ -1,3 +1,4 @@
+
 const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
@@ -48,4 +49,13 @@ function runTestsAndSolution() {
     console.log(`Part 2: ${part2Result}`);
   });
 }
+
 runTestsAndSolution();
+
+const watcher = chokidar.watch(path.join(solutionPath, "solution.js"));
+
+watcher.on("change", () => {
+  process.stdout.write("\x1Bc");
+  console.log("Solution file changed. Re-running tests...");
+  runTestsAndSolution();
+});

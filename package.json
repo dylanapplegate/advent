@@ -9,6 +9,8 @@
     "test:py": "pytest",
     "run:js": "node run_js.js",
     "run:py": "./.venv/bin/python run_py.py",
+    "run:js:watch": "node run_js_watch.js",
+    "run:py:watch": "./.venv/bin/python run_py_watch.py",
     "setup:py": "python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt",
     "postinstall": "pnpm run setup:py",
     "scaffold": "python scaffold.py"
