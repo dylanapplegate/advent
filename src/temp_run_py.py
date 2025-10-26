@@ -11,9 +11,10 @@ def load_solution_module(year, day):
     spec = importlib.util.spec_from_file_location("solution", solution_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module
-
-if __name__ == "__main__":
+        return module
+    
+    
+    if __name__ == "__main__":
     year = "2015"
     day = "01"
     solution = load_solution_module(year, day)

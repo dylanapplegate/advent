@@ -21,7 +21,7 @@ def clear_console():
 
 def run_tests_and_solution(year, day):
     day_padded = f"day{day.zfill(2)}"
-    solution_path = os.path.join(year, day_padded, "python")
+    solution_path = os.path.join("src", year, day_padded, "python")
 
     if not os.path.exists(solution_path):
         print(f"Error: Solution path not found at {solution_path}")
@@ -31,7 +31,7 @@ def run_tests_and_solution(year, day):
     env = os.environ.copy()
     env["PYTHONPATH"] = solution_path + os.pathsep + env.get("PYTHONPATH", "")
     test_result = subprocess.run(
-        ["pytest", "-k", solution_path], capture_output=True, text=True, env=env
+        ["./.venv/bin/pytest", "src/test_solutions.py", "-k", f"test_solution and {year}/{day_padded}"], capture_output=True, text=True, env=env
     )
 
     print(test_result.stdout)
@@ -44,7 +44,7 @@ def run_tests_and_solution(year, day):
     print("All tests passed!")
 
     # Run solution
-    input_file_path = os.path.join(year, day_padded, "input.txt")
+    input_file_path = os.path.join("src", year, day_padded, "input.txt")
     with open(input_file_path, "r") as f:
         input_data = f.read()
 
