@@ -1,6 +1,6 @@
-
 import os
 import sys
+
 
 def main():
     if len(sys.argv) != 3:
@@ -14,7 +14,9 @@ def main():
     base_dir = os.path.join(year, day_padded)
 
     if os.path.exists(base_dir):
-        print(f"Error: Directory '{base_dir}' already exists. Please delete it if you wish to rescaffold.")
+        print(
+            f"Error: Directory '{base_dir}' already exists. Please delete it if you wish to rescaffold."
+        )
         sys.exit(1)
 
     py_dir = os.path.join(base_dir, "python")
@@ -30,7 +32,8 @@ def main():
 
     # Create example_1.txt
     with open(os.path.join(base_dir, "example_1.txt"), "w") as f:
-        f.write("""--- Part 1 ---
+        f.write(
+            """--- Part 1 ---
 Input:
 
 Output:
@@ -39,30 +42,31 @@ Output:
 Input:
 
 Output:
-""")
+"""
+        )
 
     # Create test_data.json
     with open(os.path.join(base_dir, "test_data.json"), "w") as f:
-        f.write("""
+        f.write(
+            """
 {
   "part1": [],
   "part2": []
 }
-""")
+"""
+        )
 
     # Python solution template
     py_solution_template = """
 
-def part1(input_data):
+def part1(input):
     pass
 
-def part2(input_data):
+def part2(input):
     pass
 """
     with open(os.path.join(py_dir, "solution.py"), "w") as f:
         f.write(py_solution_template.strip())
-
-
 
     # JS solution template
     js_solution_template = """
@@ -81,6 +85,7 @@ module.exports = { part1, part2 };
         f.write(js_solution_template.strip())
 
     print(f"Scaffolding for Year {year}, Day {day} created successfully.")
+
 
 if __name__ == "__main__":
     main()
