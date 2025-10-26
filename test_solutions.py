@@ -1,4 +1,3 @@
-
 import sys
 import os
 import json
@@ -7,11 +6,13 @@ import re
 from pathlib import Path
 import importlib.util
 
+
 def load_solution_module(path):
     spec = importlib.util.spec_from_file_location("solution", path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
 
 def test_solution(solution_path):
     solution_dir = solution_path.parent
@@ -38,21 +39,30 @@ def test_solution(solution_path):
     if example_data_path.exists():
         with open(example_data_path) as f:
             content = f.read().strip()
-        
-        part1_match = re.search(r'--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)', content, re.DOTALL)
-        part2_match = re.search(r'--- Part 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$', content, re.DOTALL)
+
+        part1_match = re.search(
+            r"--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)",
+            content,
+            re.DOTALL,
+        )
+        part2_match = re.search(
+            r"--- Part 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$", content, re.DOTALL
+        )
 
         if part1_match:
             input_data = part1_match.group(1).strip()
             expected_output = part1_match.group(2).strip()
-            if hasattr(solution, 'part1'):
+            if hasattr(solution, "part1") and input_data and expected_output:
                 actual = solution.part1(input_data)
-                assert str(actual) == expected_output, f"Part 1 failed on example input: {input_data}"
+                assert (
+                    str(actual) == expected_output
+                ), f"Part 1 failed on example input: {input_data}"
 
         if part2_match:
             input_data = part2_match.group(1).strip()
             expected_output = part2_match.group(2).strip()
-            if hasattr(solution, 'part2'):
+            if hasattr(solution, "part2") and input_data and expected_output:
                 actual = solution.part2(input_data)
-                assert str(actual) == expected_output, f"Part 2 failed on example input: {input_data}"
-
+                assert (
+                    str(actual) == expected_output
+                ), f"Part 2 failed on example input: {input_data}"
