@@ -1,6 +1,3 @@
-
-
-
 def total(input_data: str) -> int:
     return sum([int(num) for num in input_data.strip().split("\n")])
 

@@ -23,11 +23,13 @@ def is_safe_with_single_exception(report: List[int]) -> bool:
 
     return False
 
+
 def part1(input_data: str) -> int:
     reports = format_input_data(input_data)
     is_safe_reports = [is_safe(report) for report in reports]
     safe_report_count = len([is_safe for is_safe in is_safe_reports if is_safe])
     return safe_report_count
+
 
 def part2(input_data: str) -> int:
     reports = format_input_data(input_data)

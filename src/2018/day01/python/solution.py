@@ -11,6 +11,7 @@ def part1(input_data: Union[str, List[str]]) -> int:
     moves = _parse_input(input_data)
     return sum(moves)
 
+
 def part2(input_data: Union[str, List[str]]) -> int:
     moves = _parse_input(input_data)
     total = 0

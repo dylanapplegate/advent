@@ -41,7 +41,9 @@ def part2(input_str: str) -> str:
     ids = format_input(input_str)
 
     for replace_index in range(len(ids[0])):
-        subbed_ids = [id_str[0:replace_index] + id_str[replace_index + 1 :] for id_str in ids]
+        subbed_ids = [
+            id_str[0:replace_index] + id_str[replace_index + 1 :] for id_str in ids
+        ]
         duplicate = get_duplicate(subbed_ids)
         if duplicate:
             return duplicate
