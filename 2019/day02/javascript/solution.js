@@ -2,10 +2,10 @@ function formatInput(input) {
   return input.split(",").map(Number);
 }
 
-function part1(input) {
+function part1(input, skipSub = false) {
   const program = formatInput(input);
 
-  if (program[1] !== 9) {
+  if (program[1] !== 9 && !skipSub) {
     program[1] = 12;
     program[2] = 2;
   }
@@ -29,7 +29,18 @@ function part1(input) {
 }
 
 function part2(input) {
-  return undefined;
+  const DESIRED_OUTCOME = 19690720;
+
+  for (let i = 0; i < 100; i++) {
+    for (let j = 0; j < 100; j++) {
+      const program = formatInput(input);
+      program[1] = i;
+      program[2] = j;
+
+      if (DESIRED_OUTCOME === part1(program.join(","), true))
+        return 100 * i + j;
+    }
+  }
 }
 
 module.exports = { part1, part2 };
