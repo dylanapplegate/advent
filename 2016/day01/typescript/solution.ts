@@ -14,16 +14,16 @@ export function part1(input: string): number {
 
   const initialState: State = { x: 0, y: 0, dir: 0 };
 
-  const sequence = input.split(",").map((s) => s.trim());
+  const sequence = input.split(',').map((s) => s.trim());
 
   const finalState = sequence.reduce((state, move) => {
     const turn = move[0];
     const distance = parseInt(move.slice(1));
 
     let newDir = state.dir;
-    if (turn === "R") {
+    if (turn === 'R') {
       newDir = (newDir + 1) % 4;
-    } else if (turn === "L") {
+    } else if (turn === 'L') {
       newDir = (newDir + 3) % 4;
     }
 
@@ -49,7 +49,7 @@ export function part2(input: string): number | undefined {
 
   const visited = new Set<string>();
 
-  const sequence = input.split(",").map((s) => s.trim());
+  const sequence = input.split(',').map((s) => s.trim());
   let direction = 0;
 
   let y = 0;
@@ -59,9 +59,9 @@ export function part2(input: string): number | undefined {
     const turn = move[0];
     const distance = parseInt(move.slice(1));
 
-    if (turn === "R") {
+    if (turn === 'R') {
       direction = (direction + 1) % 4;
-    } else if (turn === "L") {
+    } else if (turn === 'L') {
       direction = (direction + 3) % 4;
     }
 

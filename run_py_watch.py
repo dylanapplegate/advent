@@ -7,16 +7,18 @@ import platform
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+
 def clear_console():
     # Detect the operating system
     system = platform.system()
 
     if system == "Windows":
         # Use 'cls' for Windows command prompt/PowerShell
-        os.system('cls')
+        os.system("cls")
     else:
         # Use 'clear' for Linux, macOS, and other Unix-like systems
-        os.system('clear')
+        os.system("clear")
+
 
 def run_tests_and_solution(year, day):
     day_padded = f"day{day.zfill(2)}"
@@ -29,7 +31,9 @@ def run_tests_and_solution(year, day):
     # Run tests
     env = os.environ.copy()
     env["PYTHONPATH"] = solution_path + os.pathsep + env.get("PYTHONPATH", "")
-    test_result = subprocess.run(["pytest", "-k", solution_path], capture_output=True, text=True, env=env)
+    test_result = subprocess.run(
+        ["pytest", "-k", solution_path], capture_output=True, text=True, env=env
+    )
 
     print(test_result.stdout)
     print(test_result.stderr)
@@ -47,7 +51,7 @@ def run_tests_and_solution(year, day):
 
     spec = importlib.util.spec_from_file_location(
         f"{year}.{day_padded}.python.solution",
-        os.path.join(solution_path, "solution.py")
+        os.path.join(solution_path, "solution.py"),
     )
     solution_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(solution_module)
@@ -57,6 +61,7 @@ def run_tests_and_solution(year, day):
 
     print(f"Part 1: {part1_result}")
     print(f"Part 2: {part2_result}")
+
 
 class ChangeHandler(FileSystemEventHandler):
     def __init__(self, year, day):
@@ -68,6 +73,7 @@ class ChangeHandler(FileSystemEventHandler):
             clear_console()
             print("Solution file changed. Re-running tests...")
             run_tests_and_solution(self.year, self.day)
+
 
 def main():
     if len(sys.argv) != 3:
@@ -92,6 +98,7 @@ def main():
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
+
 
 if __name__ == "__main__":
     main()

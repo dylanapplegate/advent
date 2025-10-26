@@ -9,9 +9,9 @@ function calculateRecursiveFuel(mass: number): number {
 }
 
 export function part1(input: string): string {
-  if (input.includes("\n")) {
+  if (input.includes('\n')) {
     return input
-      .split("\n")
+      .split('\n')
       .map((a) => calculateFuel(parseInt(a)))
       .reduce((a, b) => a + b, 0)
       .toString();
@@ -20,9 +20,9 @@ export function part1(input: string): string {
 }
 
 export function part2(input: string): string {
-  if (input.includes("\n")) {
+  if (input.includes('\n')) {
     return input
-      .split("\n")
+      .split('\n')
       .map((a) => calculateRecursiveFuel(parseInt(a)))
       .reduce((a, b) => a + b, 0)
       .toString();

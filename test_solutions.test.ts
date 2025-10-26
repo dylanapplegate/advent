@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
 function findSolutionFiles(dir: string): string[] {
   let solutionFiles: string[] = [];
@@ -10,10 +10,10 @@ function findSolutionFiles(dir: string): string[] {
     const stat = fs.statSync(filePath);
 
     if (stat.isDirectory()) {
-      if (file !== "node_modules" && file !== ".venv" && file !== ".git") {
+      if (file !== 'node_modules' && file !== '.venv' && file !== '.git') {
         solutionFiles = solutionFiles.concat(findSolutionFiles(filePath));
       }
-    } else if (filePath.endsWith(path.join("typescript", "solution.ts"))) {
+    } else if (filePath.endsWith(path.join('typescript', 'solution.ts'))) {
       solutionFiles.push(filePath);
     }
   }
@@ -31,12 +31,12 @@ solutionPaths.forEach((solutionPath) => {
     const part1 = solution.part1;
     const part2 = solution.part2;
 
-    const testDataPath = path.join(dayDir, "test_data.json");
+    const testDataPath = path.join(dayDir, 'test_data.json');
     if (fs.existsSync(testDataPath)) {
-      const testData = JSON.parse(fs.readFileSync(testDataPath, "utf-8"));
+      const testData = JSON.parse(fs.readFileSync(testDataPath, 'utf-8'));
 
       if (part1 && testData.part1 && testData.part1.length > 0) {
-        test("Part 1 JSON", () => {
+        test('Part 1 JSON', () => {
           for (const { input, expected } of testData.part1) {
             expect(part1(input)).toBe(expected);
           }
@@ -44,7 +44,7 @@ solutionPaths.forEach((solutionPath) => {
       }
 
       if (part2 && testData.part2 && testData.part2.length > 0) {
-        test("Part 2 JSON", () => {
+        test('Part 2 JSON', () => {
           for (const { input, expected } of testData.part2) {
             expect(part2(input)).toBe(expected);
           }
@@ -52,9 +52,9 @@ solutionPaths.forEach((solutionPath) => {
       }
     }
 
-    const exampleDataPath = path.join(dayDir, "example_1.txt");
+    const exampleDataPath = path.join(dayDir, 'example_1.txt');
     if (fs.existsSync(exampleDataPath)) {
-      const content = fs.readFileSync(exampleDataPath, "utf-8").trim();
+      const content = fs.readFileSync(exampleDataPath, 'utf-8').trim();
       const part1Match = content.match(
         /--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)/s,
       );
@@ -65,7 +65,7 @@ solutionPaths.forEach((solutionPath) => {
       if (part1Match) {
         const [, input, expected] = part1Match.map((s) => s.trim());
         if (part1 && input && expected) {
-          test("Part 1 Example", () => {
+          test('Part 1 Example', () => {
             expect(String(part1(input))).toBe(expected);
           });
         }
@@ -74,7 +74,7 @@ solutionPaths.forEach((solutionPath) => {
       if (part2Match) {
         const [, input, expected] = part2Match.map((s) => s.trim());
         if (part2 && input && expected) {
-          test("Part 2 Example", () => {
+          test('Part 2 Example', () => {
             expect(String(part2(input))).toBe(expected);
           });
         }

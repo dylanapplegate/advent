@@ -12,7 +12,6 @@ def part2(input_data):
 
     cumulative_floors = accumulate(moves)
 
-
     safe_floors = list(takewhile(lambda f: f >= 0, cumulative_floors))
 
-    return str(len(safe_floors)+1)
+    return str(len(safe_floors) + 1)

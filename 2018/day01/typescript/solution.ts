@@ -1,23 +1,23 @@
-function _prepareMoves(input_data: string | number[]): number[] {
+function prepareMoves(input_data: string | number[]): number[] {
   if (Array.isArray(input_data)) {
     return input_data.map((v) => parseInt(v.toString().trim()));
   }
 
   return input_data
     .trim()
-    .split("\n")
+    .split('\n')
     .map((v) => parseInt(v.trim()));
 }
 
 export function part1(input_data: string): number {
-  const moves = _prepareMoves(input_data);
+  const moves = prepareMoves(input_data);
   const total = moves.reduce((sum, move) => sum + move, 0);
 
   return total;
 }
 
 export function part2(input_data: string): number {
-  const moves = _prepareMoves(input_data);
+  const moves = prepareMoves(input_data);
 
   let total = 0;
   const seen = new Set<number>();

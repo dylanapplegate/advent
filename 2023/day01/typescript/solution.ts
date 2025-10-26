@@ -1,4 +1,4 @@
-import { toWords } from "number-to-words";
+import { toWords } from 'number-to-words';
 
 const wordToNumber: Record<string, number> = {};
 Array.from({ length: 9 }, (v, i) => [toWords(i + 1), i + 1]).forEach(
@@ -9,8 +9,8 @@ Array.from({ length: 9 }, (v, i) => [toWords(i + 1), i + 1]).forEach(
 );
 
 export function part1(input: string): number {
-  const numbers = input.split("\n").map((v) => {
-    const stringNum = (v.match(/[0-9]/g) ?? []).join("");
+  const numbers = input.split('\n').map((v) => {
+    const stringNum = (v.match(/[0-9]/g) ?? []).join('');
     const num = Number(stringNum[0] + stringNum.slice(-1));
     return num;
   });
@@ -54,7 +54,7 @@ function getFirstAndLast(input: string): number {
 
 export function part2(input: string): number {
   return input
-    .split("\n")
+    .split('\n')
     .map((v) => getFirstAndLast(v))
     .reduce((acc, value) => acc + value);
 }

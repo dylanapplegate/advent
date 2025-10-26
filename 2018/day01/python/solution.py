@@ -1,7 +1,8 @@
 def _parse_input(input_data):
     if not isinstance(input_data, list):
-        input_data = input_data.split('\n')
+        input_data = input_data.split("\n")
     return [int(v.strip()) for v in input_data]
+
 
 def part1(input_data):
     moves = _parse_input(input_data)

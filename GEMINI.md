@@ -132,3 +132,15 @@ The content should include (but not be limited to):
     - **Inline Examples (`test_data.json`):** Used for short, multiple examples, and _prioritized_ by the test runners.
     - **Block Examples (`example_*.txt`):** Used for larger, multi-line inputs, delimited by `---`.
 6.  **Key Commands:** The exact commands for scaffolding, testing, linting, and running the code.
+
+### 8 Shell Safety and Timeouts
+
+All commands generated or executed by the agent that launch a subprocess (i.e., shell commands called via pnpm or directly) must be wrapped with a timeout utility to prevent indefinite hangs, mirroring the robust environment setup.
+
+- Mandatory Rule: When generating a shell command for execution (e.g., in a runner script or a hypothetical internal command), assume a maximum safe execution time of 30 seconds.
+
+- Implementation: Assume the target execution environment (e.g., Linux/macOS) provides the standard timeout utility.
+
+       > Syntax Example: timeout 30s <command_to_run>
+
+- Impact: The agent must ensure that any helper scripts it generates (run_py.py, run_js.js, etc.) or any direct shell commands adhere to this timeout constraint.

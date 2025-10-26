@@ -1,5 +1,5 @@
 function formatInput(input: string): string[] {
-  return input.trim().split("\n");
+  return input.trim().split('\n');
 }
 
 function countLine(line: string): [number, number] {
@@ -23,7 +23,7 @@ function getDuplicate(ids: string[]): string {
     }
     seen.add(id);
   }
-  return "";
+  return '';
 }
 
 export function part1(input: string): number {
@@ -46,10 +46,10 @@ export function part2(input: string): string {
   for (let i = 0; i < ids[0].length; i++) {
     const subbedIds = ids.map((id) => id.slice(0, i) + id.slice(i + 1));
     const duplicate = getDuplicate(subbedIds);
-    if (duplicate !== "") {
+    if (duplicate !== '') {
       return duplicate;
     }
   }
 
-  return "";
+  return '';
 }

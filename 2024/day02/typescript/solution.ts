@@ -1,5 +1,5 @@
 function formatInputData(data: string): number[][] {
-  return data.split("\n").map((line) => line.split(" ").map(Number));
+  return data.split('\n').map((line) => line.split(' ').map(Number));
 }
 
 function isSafe(report: number[]): boolean {

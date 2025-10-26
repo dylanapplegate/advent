@@ -1,5 +1,5 @@
 function formatInput(input: string): number[] {
-  return input.split(",").map(Number);
+  return input.split(',').map(Number);
 }
 
 export function part1(input: string, skipSub = false): number {
@@ -37,7 +37,7 @@ export function part2(input: string): number | undefined {
       program[1] = i;
       program[2] = j;
 
-      if (DESIRED_OUTCOME === part1(program.join(","), true))
+      if (DESIRED_OUTCOME === part1(program.join(','), true))
         return 100 * i + j;
     }
   }

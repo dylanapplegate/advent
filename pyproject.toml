@@ -1,0 +1,11 @@
+[tool.black]
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | node_modules
+)/
+'''
+
+[tool.mypy]
+exclude = ['\.venv', 'node_modules']

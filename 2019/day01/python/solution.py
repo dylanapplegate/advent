@@ -5,11 +5,13 @@ from typing import Union
 def calculate_fuel(mass):
     return math.floor(mass / 3) - 2
 
+
 def calculate_recursive_fuel(mass):
     fuel = calculate_fuel(mass)
     if fuel <= 0:
         return 0
     return fuel + calculate_recursive_fuel(fuel)
+
 
 def part1(input_data: Union[str, int]):
     if isinstance(input_data, str) and "\n" in input_data:

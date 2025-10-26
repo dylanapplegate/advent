@@ -7,7 +7,7 @@ function getTuple(row: string): [number, number] {
 }
 
 export function part1(input: string): number {
-  const rows = input.trim().split("\n").map(getTuple);
+  const rows = input.trim().split('\n').map(getTuple);
   const left = rows.map((v) => v[0]).sort((a, b) => a - b);
   const right = rows.map((v) => v[1]).sort((a, b) => a - b);
   const zipped = left.map((l, i) => Math.abs(l - right[i]));
@@ -24,7 +24,7 @@ function countNums(input: number[]): Map<number, number> {
 }
 
 export function part2(input: string): number {
-  const rows = input.trim().split("\n").map(getTuple);
+  const rows = input.trim().split('\n').map(getTuple);
   const left = rows.map((v) => v[0]);
   const right = rows.map((v) => v[1]);
   const rightCounts = countNums(right);

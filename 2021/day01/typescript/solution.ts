@@ -1,5 +1,5 @@
 function formatInput(input: string): number[] {
-  return input.split("\n").map(Number);
+  return input.split('\n').map(Number);
 }
 export function part1(input: string): number {
   const parsedInput = formatInput(input);

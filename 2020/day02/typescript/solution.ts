@@ -1,10 +1,10 @@
 type Policy = [number, number, string, string];
 
 function extractData(line: string): Policy {
-  const [policyPart, passwordPart] = line.trim().split(":");
+  const [policyPart, passwordPart] = line.trim().split(':');
   const password = passwordPart.trim();
   const [countRange, letter] = policyPart.trim().split(/\s+/g);
-  const [minPart, maxPart] = countRange.trim().split("-");
+  const [minPart, maxPart] = countRange.trim().split('-');
   const minCount = Number(minPart);
   const maxCount = Number(maxPart);
 
@@ -14,7 +14,7 @@ function extractData(line: string): Policy {
 function formatData(input: string): Policy[] {
   return input
     .trim()
-    .split("\n")
+    .split('\n')
     .map((line) => extractData(line));
 }
 
@@ -35,12 +35,16 @@ function isValid2(policy: Policy): boolean {
 
 export function part1(input: string): number {
   const policiesAndPasswords = formatData(input);
-  const validPasswords = policiesAndPasswords.filter((policy) => isValid(policy));
+  const validPasswords = policiesAndPasswords.filter((policy) =>
+    isValid(policy),
+  );
   return validPasswords.length;
 }
 
 export function part2(input: string): number {
   const policiesAndPasswords = formatData(input);
-  const validPasswords = policiesAndPasswords.filter((policy) => isValid2(policy));
+  const validPasswords = policiesAndPasswords.filter((policy) =>
+    isValid2(policy),
+  );
   return validPasswords.length;
 }
