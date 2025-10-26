@@ -8,7 +8,7 @@ const shapes = {
 };
 
 const beats = { Rock: "Scissors", Scissors: "Paper", Paper: "Rock" };
-
+const loses = { Rock: "Paper", Scissors: "Rock", Paper: "Scissors" };
 const scores = { Rock: 1, Paper: 2, Scissors: 3 };
 
 function formatData(input) {
@@ -29,13 +29,26 @@ function scoreRound(round) {
   return score;
 }
 
+function scoreRound2(round) {
+  const [shape, result] = round;
+  const mappedShape = shapes[shape];
+  if (result === "X") {
+    return scores[beats[mappedShape]];
+  } else if (result === "Y") {
+    return 3 + scores[mappedShape];
+  } else {
+    return 6 + scores[loses[mappedShape]];
+  }
+}
+
 function part1(input) {
   const scoredRounds = formatData(input).map((round) => scoreRound(round));
   return scoredRounds.reduce((total, score) => total + score, 0);
 }
 
 function part2(input) {
-  return undefined;
+  const scoredRounds = formatData(input).map((round) => scoreRound2(round));
+  return scoredRounds.reduce((total, score) => total + score, 0);
 }
 
 module.exports = { part1, part2 };
