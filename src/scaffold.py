@@ -15,7 +15,8 @@ def main():
 
     if os.path.exists(base_dir):
         print(
-            f"Error: Directory '{base_dir}' already exists. Please delete it if you wish to rescaffold."
+            f"Error: Directory '{base_dir}' already exists. "
+            "Please delete it if you wish to rescaffold."
         )
         sys.exit(1)
 

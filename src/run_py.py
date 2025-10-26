@@ -31,7 +31,15 @@ def run_tests_and_solution(year, day):
     env = os.environ.copy()
     env["PYTHONPATH"] = solution_path + os.pathsep + env.get("PYTHONPATH", "")
     test_result = subprocess.run(
-        ["./.venv/bin/pytest", "src/test_solutions.py", "-k", f"test_solution and {year}/{day_padded}"], capture_output=True, text=True, env=env
+        [
+            "./.venv/bin/pytest",
+            "src/test_solutions.py",
+            "-k",
+            f"test_solution and {year}/{day_padded}",
+        ],
+        capture_output=True,
+        text=True,
+        env=env,
     )
 
     print(test_result.stdout)

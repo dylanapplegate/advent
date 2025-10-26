@@ -1,7 +1,6 @@
 import importlib.util
 import json
 import re
-from pathlib import Path
 
 
 def load_solution_module(path):
@@ -51,13 +50,15 @@ def test_solution(solution_path):
             expected_output = part1_match.group(2).strip()
             if hasattr(solution, "part1") and input_data and expected_output:
                 actual = solution.part1(input_data)
-                assert \
-                    str(actual) == expected_output, f"Part 1 failed on example input: {input_data}"
+                assert (
+                    str(actual) == expected_output
+                ), f"Part 1 failed on example input: {input_data}"
 
         if part2_match:
             input_data = part2_match.group(1).strip()
             expected_output = part2_match.group(2).strip()
             if hasattr(solution, "part2") and input_data and expected_output:
                 actual = solution.part2(input_data)
-                assert \
-                    str(actual) == expected_output, f"Part 2 failed on example input: {input_data}"
+                assert (
+                    str(actual) == expected_output
+                ), f"Part 2 failed on example input: {input_data}"

@@ -11,7 +11,13 @@ if (!year || !day) {
 }
 
 const dayPadded = `day${day.padStart(2, '0')}`;
-const solutionPath = path.join("src", year, dayPadded, 'typescript', 'solution.ts');
+const solutionPath = path.join(
+  'src',
+  year,
+  dayPadded,
+  'typescript',
+  'solution.ts',
+);
 
 if (!fs.existsSync(solutionPath)) {
   console.error(`Error: Solution path not found at ${solutionPath}`);
@@ -33,7 +39,7 @@ function runTestsAndSolution() {
     console.log('All tests passed!');
 
     const solution = require(path.resolve(solutionPath));
-    const inputFilePath = path.join("src", year, dayPadded, 'input.txt');
+    const inputFilePath = path.join('src', year, dayPadded, 'input.txt');
     const inputData = fs.readFileSync(inputFilePath, 'utf-8');
     const { part1, part2 } = solution;
 
