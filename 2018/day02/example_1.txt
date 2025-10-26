@@ -1,0 +1,22 @@
+--- Part 1 ---
+Input:
+abcdef
+bababc
+abbcde
+abcccd
+aabcdd
+abcdee
+ababab
+Output:
+12
+--- Part 2 ---
+Input:
+abcde
+fghij
+klmno
+pqrst
+fguij
+axcye
+wvxyz
+Output:
+fgij
