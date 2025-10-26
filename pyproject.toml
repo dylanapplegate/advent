@@ -8,5 +8,4 @@ exclude = '''
 '''
 
 [tool.mypy]
-package_dir = "src"
 strict = true

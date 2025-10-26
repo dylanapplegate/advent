@@ -22,7 +22,7 @@ def part1(input_str: str) -> int:
     counted_ids = [count_line(id) for id in ids]
     count3, count2 = zip(*counted_ids)
 
-    return sum(count3) * sum(count2)
+    return int(sum(count3) * sum(count2))
 
 
 def get_duplicate(ids: List[str]) -> str:
