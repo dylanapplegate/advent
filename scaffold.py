@@ -20,11 +20,11 @@ def main():
         sys.exit(1)
 
     py_dir = os.path.join(base_dir, "python")
-    js_dir = os.path.join(base_dir, "javascript")
+    ts_dir = os.path.join(base_dir, "typescript")
 
     # Create directories
     os.makedirs(py_dir)
-    os.makedirs(js_dir)
+    os.makedirs(ts_dir)
 
     # Create empty input.txt
     with open(os.path.join(base_dir, "input.txt"), "w") as f:
@@ -68,21 +68,19 @@ def part2(input):
     with open(os.path.join(py_dir, "solution.py"), "w") as f:
         f.write(py_solution_template.strip())
 
-    # JS solution template
-    js_solution_template = """
+    # TS solution template
+    ts_solution_template = """
 
-function part1(input) {
+export function part1(input: string): number | string | undefined {
   return undefined;
 }
 
-function part2(input) {
+export function part2(input: string): number | string | undefined {
   return undefined;
 }
-
-module.exports = { part1, part2 };
 """
-    with open(os.path.join(js_dir, "solution.js"), "w") as f:
-        f.write(js_solution_template.strip())
+    with open(os.path.join(ts_dir, "solution.ts"), "w") as f:
+        f.write(ts_solution_template.strip())
 
     print(f"Scaffolding for Year {year}, Day {day} created successfully.")
 
