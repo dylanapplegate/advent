@@ -1,0 +1,16 @@
+--- Part 1 ---
+Input:
+ULL
+RRDDD
+LURDL
+UUUUD
+Output:
+1985
+--- Part 2 ---
+Input:
+ULL
+RRDDD
+LURDL
+UUUUD
+Output:
+5DB3

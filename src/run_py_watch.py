@@ -54,6 +54,11 @@ def run_tests_and_solution(year: str, day: str) -> None:
 
     print("All tests passed!")
 
+    # Remove the module from sys.modules to ensure changes are picked up
+    module_name = f"{year}.{day_padded}.python.solution"
+    if module_name in sys.modules:
+        del sys.modules[module_name]
+
     # Run solution
     input_file_path = os.path.join("src", year, day_padded, "input.txt")
     with open(input_file_path, "r") as f:
@@ -90,7 +95,10 @@ class ChangeHandler(FileSystemEventHandler):
         if event.src_path.endswith("solution.py"):
             clear_console()
             print("Solution file changed. Re-running tests...")
-            run_tests_and_solution(self.year, self.day)
+            try:
+                run_tests_and_solution(self.year, self.day)
+            except Exception as e:
+                print(f"Error during re-run: {e}")
 
 
 def main() -> None:
