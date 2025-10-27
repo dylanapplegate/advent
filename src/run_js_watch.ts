@@ -38,6 +38,8 @@ function runTestsAndSolution() {
 
     console.log('All tests passed!');
 
+    // Clear the module cache for the solution file to pick up changes
+    delete require.cache[require.resolve(path.resolve(solutionPath))];
     const solution = require(path.resolve(solutionPath));
     const inputFilePath = path.join('src', year, dayPadded, 'input.txt');
     const inputData = fs.readFileSync(inputFilePath, 'utf-8');
