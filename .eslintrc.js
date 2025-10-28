@@ -18,7 +18,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'GEMINI.md'],
   // This is the core fix:
   overrides: [
     {
