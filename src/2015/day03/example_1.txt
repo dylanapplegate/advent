@@ -1,0 +1,10 @@
+--- Part 1 ---
+Input:
+^v^v^v^v^v
+Output:
+2
+--- Part 2 ---
+Input:
+^v^v^v^v^v
+Output:
+11
