@@ -1,0 +1,9 @@
+--- Part 1 ---
+Input:
+2x3x4
+Output:
+58
+--- Part 2 ---
+Input:
+
+Output:
