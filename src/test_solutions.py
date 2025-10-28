@@ -41,12 +41,12 @@ def test_solution(solution_path: Path) -> None:
             content = f.read().strip()
 
         part1_match = re.search(
-            r"---\nPart 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)",
+            r"--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)",
             content,
             re.DOTALL,
         )
         part2_match = re.search(
-            r"---\nPart 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$", content, re.DOTALL
+            r"--- Part 2 ---\nInput:\n(.*?)\nOutput:\n(.*?)$", content, re.DOTALL
         )
 
         if part1_match:

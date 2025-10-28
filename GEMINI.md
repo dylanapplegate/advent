@@ -1,146 +1,48 @@
-## Final Project Specification for Advent of Code Solver
+## Advent of Code Project Spec
 
-This specification defines the required file structure, technology stack, and workflow for a multi-language Advent of Code project.
+This project solves Advent of Code problems in Python and JavaScript.
 
-### 1. Technology and Tooling Stack
+### Core Concepts
 
-| Feature                | Python Stack                    | JavaScript Stack           | Scaffolding |
-| :--------------------- | :------------------------------ | :------------------------- | :---------- |
-| **Language**           | Python 3.10+                    | Node.js (LTS)              | Python      |
-| **Package Manager**    | pip (via requirements.txt)      | pnpm (via package.json)    | N/A         |
-| **Test Runner**        | **pytest**                      | **jest**                   | N/A         |
-| **Code Quality**       | **flake8**, **black**, **mypy** | **eslint**, **prettier**   | N/A         |
-| **Solution Interface** | part1(input), part2(input)      | part1(input), part2(input) | N/A         |
+*   **Structure:** Year-centric (`<YEAR>/<DAY_NN>`), with `python/` and `javascript/` subfolders.
+*   **Solution Interface:** Implement `part1(input: str)` and `part2(input: str)` functions.
+*   **Input:** Solutions receive raw file content as a string.
 
-### 2. File Structure
+### Technology
 
-The project uses a **Year-centric** structure, keeping all resources for a given day in one place:
+| Feature         | Python                          | JavaScript               |
+| :-------------- | :------------------------------ | :----------------------- |
+| **Language**    | Python 3.10+                    | Node.js (LTS)            |
+| **Package Mgr** | pip (`src/requirements.txt`)    | pnpm (`package.json`)    |
+| **Test Runner** | `pytest`                        | `jest`                   |
+| **Code Quality**| `flake8`, `black`, `mypy`       | `eslint`, `prettier`     |
 
-- /advent/
-- ├── .gitignore
-- ├── README.md
-- ├── requirements.txt
-- ├── package.json
-- ├── **scaffold.py** # The dedicated setup script
-- ├── **<YEAR>** (e.g., 2023)
-- │ └── **<DAY_NN>** (e.g., day01, day25)
-- │ ├── **python/**
-- │ │ ├── solution.py
-- │ │ └── test_solution.py
-- │ ├── **javascript/**
-- │ │ ├── solution.js
-- │ │ └── solution.test.js
-- │ ├── **input.txt** # Actual puzzle input (empty upon scaffold)
-- │ ├── **example_1.txt** # Example input (for multi-line inputs)
-- │ └── **test_data.json** # Example input (for short, inline examples)
-- └── ...
+### Testing
 
-### 3. Input and Testing Logic
+Test runners prioritize `test_data.json` over `example_*.txt` files.
 
-Solutions must accept the raw file content as a string. The test runners must be capable of handling two different example input formats:
+*   **`test_data.json`**: For multiple, small, single-line examples.
+    *   JSON format: `{ "part1": [{ "input": "...", "expected": "..." }], "part2": [...] }`
+*   **`example_*.txt`**: For larger, multi-line inputs.
+    *   Format: Input data, then `---`, then `Part 1: <answer>` and `Part 2: <answer>`.
 
-#### A. Structured JSON Examples (test_data.json)
+### Workflow & Commands
 
-This format is for multiple, small, single-line examples.
+1.  **Setup:** `pnpm install` (installs all JS and Python dependencies).
+2.  **Scaffold:** `pnpm scaffold <YEAR> <DAY>`
+3.  **Run Solution:**
+    *   `pnpm run:py <YEAR> <DAY>`
+    *   `pnpm run:js <YEAR> <DAY>`
+    *   `pnpm run:py:watch <YEAR> <DAY>`
+    *   `pnpm run:js:watch <YEAR> <DAY>`
+    *   Runners execute tests first. Solution runs only if tests pass.
+4.  **Test:** `pnpm test`
+5.  **Validate Agent Work:**
+    *   Run `pnpm test`.
+    *   Run `pnpm run:js 2015 1` and `pnpm run:py 2015 1`.
+    *   Update `GEMINI.md` with any relevant details.
 
-- The file must contain an object with part1 and part2 arrays, each holding objects with input and expected keys.
-- **Testing Priority:** The test runners **must prioritize** loading and running tests from test_data.json if the file is present.
+### Shell Safety
 
-**Example test_data.json:**
-
-```json
-* {
-*   "part1": [
-*     { "input": "((", "expected": 2 },
-*     { "input": "())", "expected": -1 }
-*   ],
-*   "part2": [
-*     { "input": ")", "expected": 1 }
-*   ]
-* }
-```
-
-#### B. Separated Text Examples (example\_\*.txt)
-
-This format is for larger, multi-line inputs where the input and expected outputs are separated by a delimiter.
-
-- The input data occupies the lines above the --- separator.
-- The expected answers follow the format Part 1: <answer> and Part 2: <answer> below the separator.
-
-**Example example_1.txt:**
-
-- 1abc2
-- pqr3stu8vwx
-- ***
-- Part 1: 142
-- Part 2: 281
-
-### 4. Scaffolding Mechanism
-
-The **scaffold.py** script must be written in Python to simplify the setup process.
-
-**Usage:**
-
-```bash
-* pnpm scaffold <YEAR> <DAY>
-* # Example: pnpm scaffold 2023 1
-```
-
-### 5. Running Solutions
-
-Solutions are run using root-level scripts that automatically validate examples first.
-
-- **Python Execution:** `pnpm run:py <YEAR> <DAY>`
-- **JavaScript Execution:** `pnpm run:js <YEAR> <DAY>`
-- **Python Execution (with watch):** `pnpm run:py:watch <YEAR> <DAY>`
-- **JavaScript Execution (with watch):** `pnpm run:js:watch <YEAR> <DAY>`
-
-**Workflow:** The runner will first execute all example tests (from `test_data.json` and `example_*.txt`). ONLY if all tests pass will it then load the `input.txt` file and print the final solution for Part 1 and Part 2.
-
-### 6. Validating Agent Work
-
-After an agent has completed its work, the following steps should be taken to validate the changes:
-
-1.  **Run Tests:** Run `pnpm test` to ensure that all tests pass.
-2.  **Run Solutions:** Run `pnpm run:js 2015 1` and `pnpm run:py 2015 1` to ensure that the solutions for a known-good day execute without errors.
-3.  **Update GEMINI.md:** The agent should update this file with any relevant details about the work that was completed.
-
-### 6. Getting Started
-
-1.  **Install Dependencies and Setup Environment:**
-    ```bash
-    pnpm install
-    ```
-
-This single command will install all Node.js dependencies and then automatically create a Python virtual environment (`.venv`) and install all Python dependencies into it.
-
-### 7. New Requirement: `GEMINI.md`
-
-The root of the project directory (`/advent/`) must contain a file named **`GEMINI.md`**.
-
-### 8. `GEMINI.md` Content
-
-This file must clearly document the key aspects of the project. The coding agent should be instructed to copy and paste this file into the prompt when requesting work on a new day or feature.
-
-The content should include (but not be limited to):
-
-1.  **Project Goal:** Solving Advent of Code problems across multiple years and languages.
-2.  **Directory Structure:** A simple diagram showing the `<YEAR>/<DAY_NN>/` structure, the `python/` and `javascript/` subfolders, and the location of input files.
-3.  **Core Tooling:** Listing the required tools for each language (`pytest`, `jest`, `black`, `eslint`, etc.).
-4.  **Solution Interface:** Explicitly stating that solutions must be implemented as separate, signature-consistent functions: `part1(input: str)` and `part2(input: str)`.
-5.  **Test Data Formats:**
-    - **Inline Examples (`test_data.json`):** Used for short, multiple examples, and _prioritized_ by the test runners.
-    - **Block Examples (`example_*.txt`):** Used for larger, multi-line inputs, delimited by `---`.
-6.  **Key Commands:** The exact commands for scaffolding, testing, linting, and running the code.
-
-### 8 Shell Safety and Timeouts
-
-All commands generated or executed by the agent that launch a subprocess (i.e., shell commands called via pnpm or directly) must be wrapped with a timeout utility to prevent indefinite hangs, mirroring the robust environment setup.
-
-- Mandatory Rule: When generating a shell command for execution (e.g., in a runner script or a hypothetical internal command), assume a maximum safe execution time of 30 seconds.
-
-- Implementation: Assume the target execution environment (e.g., Linux/macOS) provides the standard timeout utility.
-
-       > Syntax Example: timeout 30s <command_to_run>
-
-- Impact: The agent must ensure that any helper scripts it generates (run_py.py, run_js.js, etc.) or any direct shell commands adhere to this timeout constraint.
+*   All shell commands must be wrapped with a `timeout 30s` to prevent hangs.
+    *   Example: `timeout 30s <command_to_run>`
