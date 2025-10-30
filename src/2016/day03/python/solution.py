@@ -1,9 +1,14 @@
+from typing import cast
+
+
 def format_data(data: str) -> list[tuple[int, int, int]]:
-    lines = [map(int, line.split()) for line in data.strip().splitlines()]
-    number_lines = [
-        (int(side1), int(side2), int(side3)) for side1, side2, side3 in lines
+    lines = [
+        cast(tuple[int, int, int], tuple(map(int, line.split())))
+        for line in data.strip().splitlines()
+        if len(line.split()) == 3
     ]
-    return number_lines
+
+    return lines
 
 
 def is_valid_triangle(a: int, b: int, c: int) -> bool:
