@@ -16,5 +16,22 @@ def part1(input: str) -> int:
     )
 
 
-def part2(input):
-    pass
+def part2(input: str) -> int:
+    matrix = format_data(input)
+    valid_triangles: int = 0
+
+    for c in range(0, 3):
+        for r in range(0, len(matrix), 3):
+            side1 = matrix[r + 0][c]
+            side2 = matrix[r + 1][c]
+            side3 = matrix[r + 2][c]
+
+            is_valid = (
+                side1 + side2 > side3
+                and side1 + side3 > side2
+                and side2 + side3 > side1
+            )
+
+            valid_triangles += 1 if is_valid else 0
+
+    return valid_triangles
