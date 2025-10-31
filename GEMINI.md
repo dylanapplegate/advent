@@ -12,8 +12,8 @@ This project solves Advent of Code problems in Python and JavaScript.
 
 | Feature         | Python                          | JavaScript               |
 | :-------------- | :------------------------------ | :----------------------- |
-| **Language**    | Python 3.10+                    | Node.js (LTS)            |
-| **Package Mgr** | pip (`src/requirements.txt`)    | pnpm (`package.json`)    |
+| **Language**    | Python 3.14+                    | Node.js (LTS)            |
+| **Package Mgr** | uv (`pyproject.toml`)    | pnpm (`package.json`)    |
 | **Test Runner** | `pytest`                        | `jest`                   |
 | **Code Quality**| `flake8`, `black`, `mypy`       | `eslint`, `prettier`     |
 

@@ -1,3 +1,15 @@
+[project]
+name = "advent"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "pytest",
+    "flake8",
+    "black",
+    "mypy",
+    "watchdog",
+]
+
 [tool.black]
 exclude = '''
 /(

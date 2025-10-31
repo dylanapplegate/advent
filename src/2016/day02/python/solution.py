@@ -37,7 +37,7 @@ def is_valid_complex_coordinate(y: int, x: int) -> bool:
 
 def part2(input: str) -> str:
     instructions = format_data(input)
-    y, x = 1, 1
+    y, x = 2, 0
     code = ""
 
     for instruction in instructions:
