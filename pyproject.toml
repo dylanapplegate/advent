@@ -4,20 +4,17 @@ version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
     "pytest",
-    "flake8",
-    "black",
     "mypy",
     "watchdog",
+    "ruff"
 ]
 
-[tool.black]
-exclude = '''
-/(
-    \.git
-    | \.venv
-    | node_modules
-)/
-'''
+[tool.ruff]
+exclude = [
+    ".git",
+    ".venv",
+    "node_modules",
+]
 
 [tool.mypy]
 strict = true

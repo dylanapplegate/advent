@@ -17,8 +17,8 @@
     "lint": "pnpm run lint:ts && pnpm run lint:py",
     "lint:ts": "eslint src --ext .ts",
     "lint:ts:fix": "eslint src --ext .ts --fix",
-    "lint:py": "uv run flake8 src && uv run black src --check && uv run mypy --package src",
-    "lint:py:fix": "uv run black src",
+    "lint:py": "uv run ruff check src && uv run mypy --package src",
+    "lint:py:fix": "uv run ruff format src && uv run ruff check src --fix",
     "lint:fix": "pnpm run lint:ts:fix && pnpm run lint:py:fix"
   },
   "keywords": [],
