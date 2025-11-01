@@ -19,38 +19,33 @@ def format_data(input: str) -> list[tuple[int, int, int, int, int]]:
              if line.strip()]
 
 
-def get_claims_map(claims):
+def get_claims_map(claims: list[tuple[int, int, int, int, int]]) -> dict[tuple[int, int],  list[int]]:
     claims_map = {}
 
     for claim_id, oy, ox, h, w in claims:
         for dy in range(h):
             for dx in range(w):
                 coord = (oy + dy, ox + dx)
-                current_claims = claims_map.pop(coord, [])
-                claims_map[coord] = [*current_claims, claim_id]
+                claims_map.setdefault(coord, []).append(claim_id)
+
     return claims_map
 
 def part1(input):
     claims = format_data(input)
     claims_map = get_claims_map(claims)
 
-    return sum(len(claim_ids) > 1 for coord, claim_ids in claims_map.items())
+    return sum(len(claim_ids) > 1 for claim_ids in claims_map.values())
 
 def part2(input):
     claims = format_data(input)
     claims_map = get_claims_map(claims)
-    possible_claims = {
-        claim
-        for claims in claims_map.values()
-        for claim in claims
-    }
 
-    invalid_claims = {
-        claim
-        for claims in claims_map.values()
-        for claim in claims
-        if len(claims) > 1
-    }
+    possible_claims: set[int] = {c[0] for c in claims}
+    invalid_claims: set[int] = set()
+
+    for claim_ids in claims_map.values():
+        if len(claim_ids) > 1:
+            invalid_claims.update(claim_ids)
 
     valid_claims = possible_claims.difference(invalid_claims)
 

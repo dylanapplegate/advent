@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2024",
+    "target": "esnext",
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
