@@ -6,16 +6,9 @@ function formatInput(input: string): string[][] {
     .map((line) => line.split(''));
 }
 
-function getGCD(a: number, b: number): number {
-  return b === 0 ? a : getGCD(b, a % b);
-}
-
 type Coordinate = [number, number];
 
-function* iterateOnSlope(
-  dr: number,
-  dc: number,
-): Generator<Coordinate, void, void> {
+function* iterateOnSlope(dr: number, dc: number): IterableIterator<Coordinate> {
   let currentY = 0,
     currentX = 0;
 
@@ -33,20 +26,27 @@ function getTreeCount(area: string[][], rise: number, run: number): number {
   const rowsN = area.length;
   const colsN = area[0].length;
 
-  let y = 0,
-    x = 0;
-
   let treeCount = 0;
 
   const generator = iterateOnSlope(rise, run);
+  let coords = generator.next();
 
-  while (y < rowsN) {
-    const [dy, dx] = generator.next().value;
-    y += dy;
-    x += dx;
+  while (!coords.done) {
+    let [y, x] = !coords.done ? coords.value! : [null, null];
+
+    if (y == null || x == null) {
+      break;
+    }
+
     x %= colsN;
 
+    if (y >= rowsN) {
+      break;
+    }
+
     treeCount += area[y][x] === '#' ? 1 : 0;
+
+    coords = generator.next();
   }
 
   return treeCount;
@@ -58,5 +58,16 @@ export function part1(input: string): number | string | undefined {
 }
 
 export function part2(input: string): number | string | undefined {
-  return undefined;
+  const area = formatInput(input);
+  const slopes = [
+    [1, 1],
+    [1, 3],
+    [1, 5],
+    [1, 7],
+    [2, 1],
+  ];
+
+  return slopes
+    .map(([y, x]) => getTreeCount(area, y, x))
+    .reduce((prod, num) => prod * num);
 }
