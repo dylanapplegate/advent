@@ -8,12 +8,19 @@ def split_line(line: str) -> Compartments:
 
     return (line[0:mid], line[mid:])
 
-def format_input(input: str) -> list[Compartments]:
+def format_input1(input: str) -> list[Compartments]:
     return [
         split_line(line)
         for line in input.strip().splitlines()
         if line.strip()
     ]
+
+def format_input2(input: str) -> list[str]:
+    return [
+        line for line in input.strip().splitlines()
+        if line.strip()
+    ]
+
 
 def get_letter_priority() -> dict[str, int]:
     priorities: dict[str, int] = dict()
@@ -42,7 +49,7 @@ def get_line_intersect_priorities(compartments: Compartments) -> int:
     )
 
 def part1(input):
-    backpacks = format_input(input)
+    backpacks = format_input1(input)
     priorities = [
         get_line_intersect_priorities(backpack)
         for backpack in backpacks
@@ -50,4 +57,16 @@ def part1(input):
     return sum(priorities)
 
 def part2(input):
-    pass
+    backpacks = format_input2(input)
+    letter_priorities = get_letter_priority()
+
+    priority_sum = 0
+    for i in range(0, len(backpacks), 3):
+        counter1 = Counter(backpacks[i])
+        counter2 = Counter(backpacks[i+1])
+        counter3 = Counter(backpacks[i+2])
+        together = counter1 & counter2 & counter3
+        badge_id = together.most_common(1)[0][0]
+        priority_sum += letter_priorities[badge_id]
+
+    return priority_sum
