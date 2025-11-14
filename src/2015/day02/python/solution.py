@@ -9,7 +9,6 @@ def format_input(input: str) -> list[list[int]]:
 
 
 def calculate_paper(dimensions: list[int]) -> int:
-
     sides = (
         dimensions[0] * dimensions[1],
         dimensions[1] * dimensions[2],

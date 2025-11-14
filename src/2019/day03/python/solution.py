@@ -1,12 +1,13 @@
 MOVE_DELTAS: dict[str, tuple[int, int]] = {
     "U": (1, 0),  # Up: +Y movement
-    "D": (-1, 0), # Down: -Y movement
+    "D": (-1, 0),  # Down: -Y movement
     "R": (0, 1),  # Right: +X movement
-    "L": (0, -1)  # Left: -X movement
+    "L": (0, -1),  # Left: -X movement
 }
 
+
 def format_wire(input: str) -> list[tuple[str, int]]:
-    wire =  [
+    wire = [
         (direction[0:1], int(direction[1:]))
         for direction in input.strip().split(",")
         if direction.strip()
@@ -15,13 +16,13 @@ def format_wire(input: str) -> list[tuple[str, int]]:
     return wire
 
 
-
 def format_data(input: str) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
     wires = tuple(map(format_wire, input.strip().splitlines()))
     if len(wires) != 2:
         raise ValueError("there should only be two wires")
 
     return wires
+
 
 def get_visited_set(directions: list[tuple[str, int]]) -> set[tuple[int, int]]:
     visited: set[tuple[int, int]] = set()
@@ -38,7 +39,10 @@ def get_visited_set(directions: list[tuple[str, int]]) -> set[tuple[int, int]]:
 
     return visited
 
-def get_steps_to_insection(directions: list[tuple[str, int]], intersections: set[tuple[int, int]]) -> dict[tuple[int, int], int]:
+
+def get_steps_to_insection(
+    directions: list[tuple[str, int]], intersections: set[tuple[int, int]]
+) -> dict[tuple[int, int], int]:
     steps_to_intersection: dict[tuple[int, int], int] = dict()
     y, x = 0, 0
     steps = 0
@@ -49,15 +53,15 @@ def get_steps_to_insection(directions: list[tuple[str, int]], intersections: set
         for _ in range(distance):
             y += dy
             x += dx
-            steps+=1
+            steps += 1
 
             coord = (y, x)
 
             if coord in intersections and coord not in steps_to_intersection:
                 steps_to_intersection[coord] = steps
 
-
     return steps_to_intersection
+
 
 def part1(input):
     wires = format_data(input)
@@ -66,7 +70,6 @@ def part1(input):
     intersections = visited1.intersection(visited2)
 
     return min(abs(y) + abs(x) for y, x in intersections)
-
 
 
 def part2(input):

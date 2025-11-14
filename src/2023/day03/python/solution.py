@@ -1,7 +1,6 @@
 from collections import defaultdict
 from functools import reduce
 import re
-from typing import Union
 
 
 def format_input(input: str) -> list[str]:

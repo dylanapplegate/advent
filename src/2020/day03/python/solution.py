@@ -1,10 +1,14 @@
 import math
 from typing import Generator
 
+
 def format_list(input: str) -> list[tuple[str, ...]]:
     return [tuple(line) for line in input.strip().splitlines()]
 
-def iterate_on_slope(dr: int, dc: int) -> Generator[tuple[int, int]]: #(current_r, current_c)
+
+def iterate_on_slope(
+    dr: int, dc: int
+) -> Generator[tuple[int, int]]:  # (current_r, current_c)
     common_divisor = math.gcd(dr, dc)
 
     if common_divisor == 0:
@@ -21,6 +25,7 @@ def iterate_on_slope(dr: int, dc: int) -> Generator[tuple[int, int]]: #(current_
         current_c += dc_unit
         yield (current_r, current_c)
 
+
 def get_tree_count(area: list[tuple[str, ...]], rise: int, run: int) -> int:
     N_rows = len(area)
     N_cols = len(area[0])
@@ -36,18 +41,14 @@ def get_tree_count(area: list[tuple[str, ...]], rise: int, run: int) -> int:
 
     return tree_count
 
+
 def part1(input):
     area = format_list(input)
     return get_tree_count(area, 1, 3)
 
+
 def part2(input):
     area = format_list(input)
-    slopes = [
-        (1, 1),
-        (1, 3),
-        (1, 5),
-        (1, 7),
-        (2, 1)
-    ]
+    slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
 
-    return math.prod( get_tree_count(area, rise, run) for rise, run in slopes)
+    return math.prod(get_tree_count(area, rise, run) for rise, run in slopes)
