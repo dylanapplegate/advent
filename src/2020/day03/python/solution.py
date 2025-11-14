@@ -42,12 +42,12 @@ def get_tree_count(area: list[tuple[str, ...]], rise: int, run: int) -> int:
     return tree_count
 
 
-def part1(input):
+def part1(input: str) -> int:
     area = format_list(input)
     return get_tree_count(area, 1, 3)
 
 
-def part2(input):
+def part2(input: str) -> int:
     area = format_list(input)
     slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
 

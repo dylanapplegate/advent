@@ -7,7 +7,7 @@ def format_data(input: str) -> list[tuple[int, ...]]:
     ]
 
 
-def part1(input):
+def part1(input: str) -> int:
     numbers = format_data(input)
     mid = len(numbers) // 2
     results_sum_tuple = tuple(sum(elements) for elements in zip(*numbers))
@@ -56,7 +56,7 @@ def get_least_num(input: list[tuple[int, ...]]) -> int:
     return num
 
 
-def part2(input):
+def part2(input: str) -> int:
     numbers = format_data(input)
     oxygen_rating = get_most_num(numbers)
     co2_scrubber = get_least_num(numbers)

@@ -42,13 +42,13 @@ def get_line_intersect_priorities(compartments: Compartments) -> int:
     return sum(letter_priorities[letter] for letter, count in intersections.items())
 
 
-def part1(input):
+def part1(input: str) -> int:
     backpacks = format_input1(input)
     priorities = [get_line_intersect_priorities(backpack) for backpack in backpacks]
     return sum(priorities)
 
 
-def part2(input):
+def part2(input: str) -> int:
     backpacks = format_input2(input)
     letter_priorities = get_letter_priority()
 

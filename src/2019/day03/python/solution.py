@@ -63,7 +63,7 @@ def get_steps_to_insection(
     return steps_to_intersection
 
 
-def part1(input):
+def part1(input: str) -> int:
     wires = format_data(input)
     visited1 = get_visited_set(wires[0])
     visited2 = get_visited_set(wires[1])
@@ -72,7 +72,7 @@ def part1(input):
     return min(abs(y) + abs(x) for y, x in intersections)
 
 
-def part2(input):
+def part2(input: str) -> int:
     wires = format_data(input)
     visited1 = get_visited_set(wires[0])
     visited2 = get_visited_set(wires[1])

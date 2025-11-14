@@ -1,5 +1,3 @@
-import { format } from 'path';
-
 function formatInput(input: string): string[] {
   return input
     .trim()

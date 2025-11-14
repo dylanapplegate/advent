@@ -21,7 +21,7 @@ def format_data(input: str) -> list[tuple[int, int, int, int, int]]:
 def get_claims_map(
     claims: list[tuple[int, int, int, int, int]],
 ) -> dict[tuple[int, int], list[int]]:
-    claims_map = {}
+    claims_map: dict[tuple[int, int], list[int]] = {}
 
     for claim_id, oy, ox, h, w in claims:
         for dy in range(h):
@@ -32,14 +32,14 @@ def get_claims_map(
     return claims_map
 
 
-def part1(input):
+def part1(input: str) -> int:
     claims = format_data(input)
     claims_map = get_claims_map(claims)
 
     return sum(len(claim_ids) > 1 for claim_ids in claims_map.values())
 
 
-def part2(input):
+def part2(input: str) -> int:
     claims = format_data(input)
     claims_map = get_claims_map(claims)
 

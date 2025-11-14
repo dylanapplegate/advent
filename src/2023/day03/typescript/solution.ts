@@ -1,7 +1,7 @@
-export function part1(input: string): number | string | undefined {
+export function part1(): number | string | undefined {
   return undefined;
 }
 
-export function part2(input: string): number | string | undefined {
+export function part2(): number | string | undefined {
   return undefined;
 }
