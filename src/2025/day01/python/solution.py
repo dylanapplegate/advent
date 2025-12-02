@@ -9,10 +9,11 @@ def part1(input: str) -> int:
     zero_count = 0
 
     for direction, distance in rotations:
+        distance_normalized = distance % 100
         if direction == "R":
-            value = (value + distance) % 100
+            value = (value + distance_normalized) % 100
         else:
-            value = (value + (100 - (distance % 100))) % 100
+            value = (value - distance_normalized) % 100
 
         if value == 0:
             zero_count += 1
@@ -26,12 +27,7 @@ def part2(input: str) -> int:
     zero_count = 0
 
     for direction, distance in rotations:
-        additive = 0
-
-        if direction == "L":
-            additive = -1
-        else:
-            additive = 1
+        additive = -1 if direction == "L" else 1
 
         counter = distance
 
