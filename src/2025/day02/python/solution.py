@@ -1,3 +1,9 @@
+from typing import Callable
+
+
+Validator = Callable[[str], bool]
+
+
 def format_input(input: str) -> list[tuple[str, str]]:
     return [
         (id_range.split("-")[0], id_range.split("-")[1])
@@ -6,20 +12,11 @@ def format_input(input: str) -> list[tuple[str, str]]:
     ]
 
 
-def get_invalid_single_repeat_ids(lower_bound: int, upper_bound: int) -> list[int]:
+def get_invalid_ids(
+    lower_bound: int, upper_bound: int, validator: Validator
+) -> list[int]:
     invalid_ids = [
-        id
-        for id in range(lower_bound, upper_bound + 1)
-        if not is_valid_single_repeat(str(id))
-    ]
-    return invalid_ids
-
-
-def get_invalid_multi_repeat_ids(lower_bound: int, upper_bound: int) -> list[int]:
-    invalid_ids = [
-        id
-        for id in range(lower_bound, upper_bound + 1)
-        if not is_valid_multi_repeats(str(id))
+        id for id in range(lower_bound, upper_bound + 1) if not validator(str(id))
     ]
     return invalid_ids
 
@@ -38,7 +35,9 @@ def part1(input: str) -> int:
     return sum(
         invalid_ids
         for lower, upper in ranges
-        for invalid_ids in get_invalid_single_repeat_ids(int(lower), int(upper))
+        for invalid_ids in get_invalid_ids(
+            int(lower), int(upper), is_valid_single_repeat
+        )
     )
 
 
@@ -47,6 +46,8 @@ def part2(input: str) -> int:
     invalid_ids = [
         invalid_ids
         for lower, upper in ranges
-        for invalid_ids in get_invalid_multi_repeat_ids(int(lower), int(upper))
+        for invalid_ids in get_invalid_ids(
+            int(lower), int(upper), is_valid_multi_repeats
+        )
     ]
     return sum(invalid_ids)
