@@ -38,7 +38,7 @@ def test_solution(solution_path: Path) -> None:
 
     if example_data_path.exists():
         with open(example_data_path) as f:
-            content = f.read().strip()
+            content = f.read()
 
         part1_match = re.search(
             r"--- Part 1 ---\nInput:\n(.*?)\nOutput:\n(.*?)(?=\n--- Part 2 ---|$)",
@@ -50,8 +50,8 @@ def test_solution(solution_path: Path) -> None:
         )
 
         if part1_match:
-            input_data = part1_match.group(1).strip()
-            expected_output = part1_match.group(2).strip()
+            input_data = part1_match.group(1)
+            expected_output = part1_match.group(2)
             if hasattr(solution, "part1") and input_data and expected_output:
                 actual = solution.part1(input_data)
                 assert str(actual) == expected_output, (
@@ -59,8 +59,8 @@ def test_solution(solution_path: Path) -> None:
                 )
 
         if part2_match:
-            input_data = part2_match.group(1).strip()
-            expected_output = part2_match.group(2).strip()
+            input_data = part2_match.group(1)
+            expected_output = part2_match.group(2)
             if hasattr(solution, "part2") and input_data and expected_output:
                 actual = solution.part2(input_data)
                 assert str(actual) == expected_output, (
