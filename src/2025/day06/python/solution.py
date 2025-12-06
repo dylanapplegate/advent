@@ -54,22 +54,6 @@ def decode_vertical_num(column_segments: tuple[str, ...]) -> int:
     return calculate(right_to_left_nums, column_segments[-1])
 
 
-def solve_problem_by_col2(rows: ROWS, col: int) -> int:
-    sign = rows[-1][col]
-    nums = [row[col] for row in rows[0:-1]]
-    right_to_left_nums: list[int] = list()
-    max_len = max(len(num) for num in nums)
-
-    for offset in range(1, max_len + 1):
-        string_num_list = [num[-1 * offset] for num in nums if num[-1 * offset].strip()]
-        string_num = "".join(string_num_list).strip()
-        if string_num:
-            num = int(string_num)
-            right_to_left_nums.append(num)
-
-    return calculate(right_to_left_nums, sign)
-
-
 def part1(puzzle_input: str) -> int:
     rows = parse_grid_simple(puzzle_input)
 
